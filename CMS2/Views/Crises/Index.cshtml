@@ -24,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.Category.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Emergency.Level)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CallerName)
             </th>
             <th>
@@ -34,9 +37,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LevelOfEmergencyId)
             </th>
             <th></th>
         </tr>
@@ -50,6 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Category.Description)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Emergency.Level)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CallerName)
             </td>
             <td>
@@ -60,9 +63,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LevelOfEmergencyId)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -14,8 +14,8 @@ namespace CMS2.Models
         public string Location { get; set; }
         public string Description { get; set; }
 
-        public int LevelOfEmergencyId { get; set; }
-        public virtual LevelOfEmergency LevelOfEmergency { get; set; }
+        public int EmergencyId { get; set; }
+        public virtual Emergency Emergency { get; set; }
 
         public int AssistanceRequiredId { get; set; }
         public virtual AssistanceRequired AssistanceRequired { get; set; }

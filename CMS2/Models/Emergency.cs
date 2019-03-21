@@ -5,12 +5,12 @@ using System.Web;
 
 namespace CMS2.Models
 {
-    public class LevelOfEmergency
+    public class Emergency
     {
         public int Id { get; set; }
 
         public string Level { get; set; }
 
-        public virtual ICollection<Crisis> ListOfCrisisByEmergency { get; set; }
+        public virtual List<Crisis> CrisisByLevel { get; set; }
     }
 }

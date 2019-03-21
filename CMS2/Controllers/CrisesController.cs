@@ -13,12 +13,11 @@ namespace CMS2.Controllers
     public class CrisesController : Controller
     {
         private CMS2Context db = new CMS2Context();
-        
 
         // GET: Crises
         public ActionResult Index()
         {
-            var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category);
+            var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
             return View(crises.ToList());
         }
 
@@ -42,6 +41,7 @@ namespace CMS2.Controllers
         {
             ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance");
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description");
+            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace CMS2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,LevelOfEmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
+        public ActionResult Create([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +61,7 @@ namespace CMS2.Controllers
 
             ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
+            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
             return View(crisis);
         }
 
@@ -78,6 +79,7 @@ namespace CMS2.Controllers
             }
             ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
+            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
             return View(crisis);
         }
 
@@ -86,7 +88,7 @@ namespace CMS2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,LevelOfEmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
+        public ActionResult Edit([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +98,7 @@ namespace CMS2.Controllers
             }
             ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
+            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
             return View(crisis);
         }
 
