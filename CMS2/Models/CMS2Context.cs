@@ -24,5 +24,11 @@ namespace CMS2.Models
         public System.Data.Entity.DbSet<CMS2.Models.AssistanceRequired> AssistanceRequireds { get; set; }
 
         public System.Data.Entity.DbSet<CMS2.Models.LevelOfEmergency> LevelOfEmergencies { get; set; }
+
+        public System.Data.Entity.DbSet<CMS2.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<CMS2.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<CMS2.Models.UserRole> UserRoles { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CMS2.Models.LevelOfEmergency>
+﻿@model IEnumerable<CMS2.Models.Category>
 
 @{
     Layout = null;
@@ -18,7 +18,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Level)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th></th>
         </tr>
@@ -26,7 +26,7 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Level)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

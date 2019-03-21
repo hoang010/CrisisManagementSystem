@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CMS2.Models.Crisis>
 
 @{
-  
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -19,6 +19,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CallerName)
@@ -42,6 +45,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AssistanceRequired.Assistance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CallerName)

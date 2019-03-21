@@ -10,117 +10,107 @@ using CMS2.Models;
 
 namespace CMS2.Controllers
 {
-    public class CrisesController : Controller
+    public class CategoriesController : Controller
     {
         private CMS2Context db = new CMS2Context();
-        
 
-        // GET: Crises
+        // GET: Categories
         public ActionResult Index()
         {
-            var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category);
-            return View(crises.ToList());
+            return View(db.Categories.ToList());
         }
 
-        // GET: Crises/Details/5
+        // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
-            if (crisis == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(crisis);
+            return View(category);
         }
 
-        // GET: Crises/Create
+        // GET: Categories/Create
         public ActionResult Create()
         {
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description");
             return View();
         }
 
-        // POST: Crises/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,LevelOfEmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
+        public ActionResult Create([Bind(Include = "Id,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Crises.Add(crisis);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
-            return View(crisis);
+            return View(category);
         }
 
-        // GET: Crises/Edit/5
+        // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
-            if (crisis == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
-            return View(crisis);
+            return View(category);
         }
 
-        // POST: Crises/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,LevelOfEmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
+        public ActionResult Edit([Bind(Include = "Id,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(crisis).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
-            return View(crisis);
+            return View(category);
         }
 
-        // GET: Crises/Delete/5
+        // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
-            if (crisis == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(crisis);
+            return View(category);
         }
 
-        // POST: Crises/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Crisis crisis = db.Crises.Find(id);
-            db.Crises.Remove(crisis);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
