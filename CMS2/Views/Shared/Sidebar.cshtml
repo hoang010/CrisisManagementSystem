@@ -29,11 +29,11 @@
                     @Html.ActionLink("Dashboard", "Index", "Home")
 
                 </li>
-                <li class='@Html.IsActive("Crises", "Index")'>
-                    @Html.ActionLink("Submit New Crisis", "Index", "Crises")
+                <li class='@Html.IsActive("Crises", "Create")'>
+                    @Html.ActionLink("Submit New Crisis", "Create", "Crises")
                 </li>
-                <li>
-                    <a href="#">Update Existing Crisis</a>
+                <li class='@Html.IsActive("Crises", "Index")'>
+                    @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
                 </li>
                 <li>
                     <a href="#">View Crisis Report</a>
