@@ -181,7 +181,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginTemplateController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SocialMediaTypesController.cs" />
+    <Compile Include="Controllers\SocialMediaUpdatesController.cs" />
     <Compile Include="Data Access Layer\CrisisRepository.cs" />
+    <Compile Include="Data Access Layer\SocialMediaUpdatesRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +197,8 @@
     <Compile Include="Models\Emergency.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SocialMediaType.cs" />
+    <Compile Include="Models\SocialMediaUpdates.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,10 +287,19 @@
     <Content Include="Views\Crises\Details.cshtml" />
     <Content Include="Views\Crises\Edit.cshtml" />
     <Content Include="Views\Crises\Index.cshtml" />
+    <Content Include="Views\SocialMediaTypes\Create.cshtml" />
+    <Content Include="Views\SocialMediaTypes\Delete.cshtml" />
+    <Content Include="Views\SocialMediaTypes\Details.cshtml" />
+    <Content Include="Views\SocialMediaTypes\Edit.cshtml" />
+    <Content Include="Views\SocialMediaTypes\Index.cshtml" />
+    <Content Include="Views\SocialMediaUpdates\Create.cshtml" />
+    <Content Include="Views\SocialMediaUpdates\Delete.cshtml" />
+    <Content Include="Views\SocialMediaUpdates\Details.cshtml" />
+    <Content Include="Views\SocialMediaUpdates\Edit.cshtml" />
+    <Content Include="Views\SocialMediaUpdates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="Views\LoginTemplate\" />
   </ItemGroup>
   <ItemGroup>

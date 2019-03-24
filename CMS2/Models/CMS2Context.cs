@@ -30,5 +30,9 @@ namespace CMS2.Models
         public System.Data.Entity.DbSet<CMS2.Models.User> Users { get; set; }
 
         public System.Data.Entity.DbSet<CMS2.Models.UserRole> UserRoles { get; set; }
+
+        public System.Data.Entity.DbSet<CMS2.Models.SocialMediaType> SocialMediaTypes { get; set; }
+
+        public System.Data.Entity.DbSet<CMS2.Models.SocialMediaUpdates> SocialMediaUpdates { get; set; }
     }
 }
