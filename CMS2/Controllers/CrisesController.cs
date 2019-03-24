@@ -23,8 +23,8 @@ namespace CMS2.Controllers
             //var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
 
             //with data access layer
-            var crises2 = CrisisRepository.getAllCrises();
-            return View(crises2);
+            var crisis = CrisisRepository.getAllCrises();
+            return View(crisis);
         }
 
         // GET: Crises/Details/5
@@ -34,7 +34,7 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
+            Crisis crisis = CrisisRepository.getCrisisById(id);
             if (crisis == null)
             {
                 return HttpNotFound();
@@ -45,9 +45,11 @@ namespace CMS2.Controllers
         // GET: Crises/Create
         public ActionResult Create()
         {
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description");
-            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level");
+            //pass in data to view the assistance, categories, emergencies
+            ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance");
+            ViewBag.CategoryId = new SelectList(CrisisRepository.GetCategories(), "Id", "Description");
+            ViewBag.EmergencyId = new SelectList(CrisisRepository.GetEmergencies(), "Id", "Level");
+
             return View();
         }
 
@@ -65,9 +67,16 @@ namespace CMS2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
-            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
+            //generated code
+            //ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
+            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
+            //ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
+
+            //new code
+            ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance", crisis.AssistanceRequiredId);
+            ViewBag.CategoryId = new SelectList(CrisisRepository.GetCategories(), "Id", "Description", crisis.CategoryId);
+            ViewBag.EmergencyId = new SelectList(CrisisRepository.GetEmergencies(), "Id", "Level", crisis.EmergencyId);
+
             return View(crisis);
         }
 
@@ -78,7 +87,8 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
+            //Crisis crisis = db.Crises.Find(id);
+            Crisis crisis = CrisisRepository.getCrisisById(id);
             if (crisis == null)
             {
                 return HttpNotFound();
@@ -115,7 +125,8 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crisis crisis = db.Crises.Find(id);
+            //Crisis crisis = db.Crises.Find(id);
+            Crisis crisis = CrisisRepository.getCrisisById(id);
             if (crisis == null)
             {
                 return HttpNotFound();
@@ -128,12 +139,14 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Crisis crisis = db.Crises.Find(id);
+            //Crisis crisis = db.Crises.Find(id);
+            Crisis crisis = CrisisRepository.getCrisisById(id);
             db.Crises.Remove(crisis);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        //to be removed after testing
         protected override void Dispose(bool disposing)
         {
             if (disposing)
