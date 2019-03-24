@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CMS2.Data_Access_Layer;
 using CMS2.Models;
 
 namespace CMS2.Controllers
@@ -13,12 +14,17 @@ namespace CMS2.Controllers
     public class CrisesController : Controller
     {
         private CMS2Context db = new CMS2Context();
+        public CrisisRepository CrisisRepository = new CrisisRepository();
 
         // GET: Crises
         public ActionResult Index()
         {
-            var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
-            return View(crises.ToList());
+            //old code
+            //var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
+
+            //with data access layer
+            var crises2 = CrisisRepository.getAllCrises();
+            return View(crises2);
         }
 
         // GET: Crises/Details/5

@@ -8,11 +8,11 @@ namespace CMS2.Data_Access_Layer
 {
     public class CrisisRepository
     {
-        private readonly CMS2Context _dbcontext;
+        private CMS2Context db = new CMS2Context();
 
-        public List<Crisis> getAllCrises(CMS2Context _dbcontext)
+        public List<Crisis> getAllCrises()
         {
-            var all_crises = _dbcontext.Crises.ToList();
+            var all_crises = db.Crises.ToList();
 
             return all_crises;
         }
