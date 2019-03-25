@@ -10,13 +10,10 @@ namespace CMS2.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+            //if (Session["UserId"] == null)
+            //{
+            //    return Redirect("/account/login");
+            //}
             return View();
         }
 
