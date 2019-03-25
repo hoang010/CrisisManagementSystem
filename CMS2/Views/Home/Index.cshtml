@@ -8,7 +8,8 @@
             height: 500px; /* The height is 400 pixels */
             width: 100%; /* The width is the width of the web page */
         }
-        html, body{
+
+        html, body {
             height: 80%;
             margin: 0;
             padding: 0;
@@ -16,28 +17,31 @@
     </style>
 </head>
 <body>
-    <h3>Singapore Map</h3>
-    <input id="mapRadar" type="button" value="Turn on Weather Radar" />
-    <input id="mapTraffic" type="button" value="Turn on Traffic" />
-    <script src="~/Scripts/GoogleMapsAPI.js"></script>
-    <!--The div element for the map -->
+    <input id="Weather" type="checkbox" value="Weather"/><label for="Weather">Weather</label>
+    <input id="Temperature" type="checkbox" value="Temperature"/><label for="Temperature">Temperature</label>
+    <input id="Haze" type="checkbox" value="Haze"/><label for="Haze">Haze</label>
+    <input id="Emergency" type="checkbox" value="Emergency"/><label for="Emergency">Emergency</label>
+    <input id="Dengue" type="checkbox" value="Dengue"/><label for="Dengue">Dengue</label>
     <div id="map"></div>
-    <script>
-        // Initialize and add the map
-        function initMap() {
-            // The location of Singapore
-            var singapore = { lat: 1.3521, lng: 103.8198 };
-            // The map, centered at Singapore
-            var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 11, center: singapore });
+    @*
+        <!--The div element for the map -->
+        <div id="map"></div>
+            <script>
+                // Initialize and add the map
+                function initMap() {
+                    // The location of Singapore
+                    var singapore = { lat: 1.3521, lng: 103.8198 };
+                    // The map, centered at Singapore
+                    var map = new google.maps.Map(
+                        document.getElementById('map'), { zoom: 11, center: singapore });
 
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcJtcvkVHnpyfcZ-Z32rZK1RHYS5Ztuj4&callback=initMap">
-    </script>
+                }
+            </script>
+    *@
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/GoogleMapsAPI.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcJtcvkVHnpyfcZ-Z32rZK1RHYS5Ztuj4&callback=initMap"
+            async defer></script>
 </body>
 </html>
