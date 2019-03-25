@@ -35,11 +35,11 @@
                 <li class='@Html.IsActive("Crises", "Index")'>
                     @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
                 </li>
-                <li>
-                    <a href="#">View Crisis Report</a>
-                </li>
                 <li class='@Html.IsActive("SocialMediaUpdates", "Create")'>
                     @Html.ActionLink("Social Media Update", "Create", "SocialMediaUpdates")
+                </li>
+                <li class='@Html.IsActive("SocialMediaUpdates", "Index")'>
+                    @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
                 </li>
             </ul>
             <ul class="list-unstyled CTAs">

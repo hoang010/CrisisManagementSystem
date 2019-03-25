@@ -62,6 +62,7 @@ namespace CMS2.Controllers
         {
             if (ModelState.IsValid)
             {
+                crisis.TimeStamp = DateTime.Now;
                 db.Crises.Add(crisis);
                 db.SaveChanges();
                 return RedirectToAction("Index");

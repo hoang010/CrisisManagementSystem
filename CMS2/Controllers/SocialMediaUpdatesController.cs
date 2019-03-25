@@ -52,6 +52,7 @@ namespace CMS2.Controllers
         {
             if (ModelState.IsValid)
             {
+                socialMediaUpdates.TimeStamp = DateTime.Now;
                 db.SocialMediaUpdates.Add(socialMediaUpdates);
                 db.SaveChanges();
                 return RedirectToAction("Index");
