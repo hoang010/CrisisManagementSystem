@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AssistanceRequiredsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CrisesController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\EmergenciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginTemplateController.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Views\SocialMediaUpdates\Details.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Edit.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Index.cshtml" />
+    <Content Include="Views\Email\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

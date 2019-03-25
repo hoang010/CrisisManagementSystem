@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CMS2.Data_Access_Layer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace CMS2.Controllers
     {
         public ActionResult Index()
         {
+            CrisisRepository crisisRepository = new CrisisRepository();
+            ViewBag.Crises = crisisRepository.getAllCrises();
             //if (Session["UserId"] == null)
             //{
             //    return Redirect("/account/login");
