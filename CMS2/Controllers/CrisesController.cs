@@ -14,7 +14,7 @@ namespace CMS2.Controllers
     public class CrisesController : Controller
     {
         private CMS2Context db = new CMS2Context();
-        public CrisisRepository CrisisRepository = new CrisisRepository();
+        private CrisisRepository CrisisRepository = new CrisisRepository();
 
         // GET: Crises
         public ActionResult Index()

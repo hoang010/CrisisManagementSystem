@@ -27,7 +27,6 @@
 
                 <li class='@Html.IsActive("Home", "Index")'>
                     @Html.ActionLink("Dashboard", "Index", "Home")
-
                 </li>
                 <li class='@Html.IsActive("Crises", "Create")'>
                     @Html.ActionLink("Submit New Crisis", "Create", "Crises")
@@ -71,7 +70,7 @@
                 @RenderBody()
                 <hr />
                 <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
                 </footer>
             </div>
 

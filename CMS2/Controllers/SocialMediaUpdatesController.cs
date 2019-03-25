@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CMS2.Data_Access_Layer;
 using CMS2.Models;
 
 namespace CMS2.Controllers
@@ -13,12 +14,14 @@ namespace CMS2.Controllers
     public class SocialMediaUpdatesController : Controller
     {
         private CMS2Context db = new CMS2Context();
+        private SocialMediaUpdatesRepository SocialMediaUpdatesRepository = new SocialMediaUpdatesRepository();
 
         // GET: SocialMediaUpdates
         public ActionResult Index()
         {
-            var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
-            return View(socialMediaUpdates.ToList());
+            //var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
+            var socialMediaUpdates = SocialMediaUpdatesRepository.getAllUpdates();
+            return View(socialMediaUpdates);
         }
 
         // GET: SocialMediaUpdates/Details/5
@@ -28,7 +31,8 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
+            var socialMediaUpdates = SocialMediaUpdatesRepository.getUpdateById(id);
+            //SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
             if (socialMediaUpdates == null)
             {
                 return HttpNotFound();
@@ -62,6 +66,7 @@ namespace CMS2.Controllers
             return View(socialMediaUpdates);
         }
 
+        //should not be able to update it
         // GET: SocialMediaUpdates/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -94,7 +99,7 @@ namespace CMS2.Controllers
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name", socialMediaUpdates.SocialMediaTypeId);
             return View(socialMediaUpdates);
         }
-
+        //should not be able to delete also
         // GET: SocialMediaUpdates/Delete/5
         public ActionResult Delete(int? id)
         {

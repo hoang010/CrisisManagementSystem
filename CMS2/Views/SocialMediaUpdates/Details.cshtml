@@ -1,7 +1,7 @@
 ﻿@model CMS2.Models.SocialMediaUpdates
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Sidebar.cshtml";
 }
 
 <!DOCTYPE html>
@@ -19,23 +19,31 @@
             <dt>
                 @Html.DisplayNameFor(model => model.SocialMediaType.Name)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.SocialMediaType.Name)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Description)
             </dd>
-    
+
+            <dt>
+                Time
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TimeStamp)
+            </dd>
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { it = Model.Id}) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
