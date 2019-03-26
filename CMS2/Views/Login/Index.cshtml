@@ -2,80 +2,156 @@
 @{
     Layout = null;
 }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
 
+    html {
+        font-family: "Lucida Sans", sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+    body {
+        background-color: #cfebea;
+    }
+
+
+    .header {
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    [class="logo"] {
+        width: 66.66%;
+        height: 100%;
+        float: left;
+        padding: 25px;
+    }
+
+    [class="name"] {
+        float: left;
+        width: 33.33%;
+        height: 20%;
+        padding: 15px;
+        background-color: #548b95;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    [class="form"] {
+        float: left;
+        width: 33.33%;
+        height: 80%;
+        background-color: #fff;
+        padding: 15px;
+    }
+
+    [class="form-group"] {
+        display: grid;
+    }
+
+    [class="col-md-8"] {
+        align-items: center;
+        width: 100%;
+    }
+
+    [class="col-md-2"] {
+        text-align: left;
+        float: left;
+        display: grid;
+    }
+
+    [class="col-md-10"] {
+        float: left;
+        width: 66.67%;
+    }
+</style>
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-    <style>
-        #login-div{
-            position:absolute;
-            left:40%;
-            top:40%;
-            border: 1px solid #ccc;
-            padding:10px 10px;
-        }
-        .field-validation-error{
-            color:red;
-        }
-    </style>
 </head>
 <body>
-    <div id="login-div">
-        @using (Html.BeginForm("Authorize","Login",FormMethod.Post))
-        {
-        <table>
-            <tr>
-                <td></td>
-                <td style="text-decoration: underline"> CMS</td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.UserName)
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.UserName)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.UserName)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Password)
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.Password)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Password)
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="field-validation-error">@Html.DisplayFor(model => model.LoginError)</label>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" name="name" value="Login" />
-                    <input type="reset" name="name" value="Clear" />
-                </td>
-            </tr>
-        </table>
-        }
+    <div class="row">
+        <div class="logo">
+            <img src="~/Content/Images/ambulance-1674877_1280.png" style='height: 100%; width: 100%; object-fit: contain' />
+        </div>
+        <div class="name">
+            <h1>Crisis Management System</h1>
+        </div>
+
+        <div class="form">
+            <h2>@ViewBag.Title.</h2>
+            <div class="col-md-8">
+                <section id="loginForm">
+                    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Use a local account to log in.</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginError)</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="submit" name="name" value="Login" />
+                                <input type="reset" name="name" value="Clear" />
+                            </div>
+                        </div>
+                        @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+                    }
+                </section>
+            </div>
+            @*
+            <div class="col-md-4">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>
+            *@
+        </div>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     </div>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+}
