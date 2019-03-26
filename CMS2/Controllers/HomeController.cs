@@ -11,19 +11,12 @@ namespace CMS2.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             CrisisRepository crisisRepository = new CrisisRepository();
             ViewBag.Crises = crisisRepository.getAllCrises();
-            //if (Session["UserId"] == null)
-            //{
-            //    return Redirect("/account/login");
-            //}
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
