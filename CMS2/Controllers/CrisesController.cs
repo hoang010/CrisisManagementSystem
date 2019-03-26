@@ -22,6 +22,10 @@ namespace CMS2.Controllers
             //old code
             //var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
 
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             //with data access layer
             var crisis = CrisisRepository.getAllCrises();
             return View(crisis);
@@ -30,6 +34,10 @@ namespace CMS2.Controllers
         // GET: Crises/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -45,6 +53,10 @@ namespace CMS2.Controllers
         // GET: Crises/Create
         public ActionResult Create()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             //pass in data to view the assistance, categories, emergencies
             ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance");
             ViewBag.CategoryId = new SelectList(CrisisRepository.GetCategories(), "Id", "Description");
@@ -84,6 +96,10 @@ namespace CMS2.Controllers
         // GET: Crises/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,6 +138,10 @@ namespace CMS2.Controllers
         // GET: Crises/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -140,6 +160,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.getCrisisById(id);
             db.Crises.Remove(crisis);

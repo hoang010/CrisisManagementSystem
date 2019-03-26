@@ -19,6 +19,10 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates
         public ActionResult Index()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             //var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
             var socialMediaUpdates = SocialMediaUpdatesRepository.getAllUpdates();
             return View(socialMediaUpdates);
@@ -27,6 +31,10 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,6 +51,10 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Create
         public ActionResult Create()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name");
             return View();
         }
@@ -70,6 +82,10 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,6 +119,10 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -120,6 +140,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
             db.SocialMediaUpdates.Remove(socialMediaUpdates);
             db.SaveChanges();
