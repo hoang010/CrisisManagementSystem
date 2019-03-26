@@ -15,6 +15,7 @@ namespace CMS2.Controllers
             {
                 return Redirect("/login/index");
             }
+
             CrisisRepository crisisRepository = new CrisisRepository();
             ViewBag.Crises = crisisRepository.getAllCrises();
             return View();

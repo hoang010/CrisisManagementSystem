@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
 using CMS2.Models;
+using Newtonsoft.Json;
 
 namespace CMS2.Controllers
 {
@@ -56,6 +58,7 @@ namespace CMS2.Controllers
                 return Redirect("/login/index");
             }
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name");
+
             return View();
         }
 
@@ -71,10 +74,33 @@ namespace CMS2.Controllers
                 socialMediaUpdates.TimeStamp = DateTime.Now;
                 db.SocialMediaUpdates.Add(socialMediaUpdates);
                 db.SaveChanges();
+
+                //api usage
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.108:5000/tweet");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = "{\"tweet\":" + "\""+ socialMediaUpdates.Description.ToString()+"\"}";
+                    System.Diagnostics.Debug.WriteLine(json);
+                    System.Diagnostics.Debug.WriteLine("===============================================================");
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                }
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name", socialMediaUpdates.SocialMediaTypeId);
+
             return View(socialMediaUpdates);
         }
 

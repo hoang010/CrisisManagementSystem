@@ -173,7 +173,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssistanceRequiredsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CrisesController.cs" />
@@ -182,11 +181,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginTemplateController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SocialMediaTypesController.cs" />
     <Compile Include="Controllers\SocialMediaUpdatesController.cs" />
     <Compile Include="Data Access Layer\CrisisRepository.cs" />
     <Compile Include="Data Access Layer\SocialMediaUpdatesRepository.cs" />
+    <Compile Include="Data Access Layer\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
