@@ -63,7 +63,6 @@ namespace CMS2.Controllers
             if (ModelState.IsValid)
             {
                 crisis.TimeStamp = DateTime.Now;
-                //dsfjadslfjdsfl
 
                 db.Crises.Add(crisis);
                 db.SaveChanges();
