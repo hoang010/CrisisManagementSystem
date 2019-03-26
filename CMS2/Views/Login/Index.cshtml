@@ -1,9 +1,11 @@
 ﻿@model  CMS2.Models.User
 @{
+    ViewBag.Title = "Log in";
     Layout = null;
 }
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
+
 
     html {
         font-family: "Lucida Sans", sans-serif;
@@ -72,6 +74,7 @@
     }
 
     [class="col-md-2"] {
+        display: inline;
         text-align: left;
         float: left;
         display: grid;
@@ -80,6 +83,10 @@
     [class="col-md-10"] {
         float: left;
         width: 66.67%;
+    }
+
+    h2 {
+        margin-left: 15px;
     }
 </style>
 <!DOCTYPE html>
@@ -94,9 +101,8 @@
         <div class="name">
             <h1>Crisis Management System</h1>
         </div>
-
         <div class="form">
-            <h2>@ViewBag.Title.</h2>
+            <h2>    @ViewBag.Title.</h2>
             <div class="col-md-8">
                 <section id="loginForm">
                     @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -105,15 +111,15 @@
                         <h4>Use a local account to log in.</h4>
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
+                        <div class="form-group" style="white-space:nowrap">
+                            @Html.LabelFor(m => m.UserName, "User Name", new { @class = "col-md-2 control-label" })
                             <div class="col-md-10">
                                 @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                             <div class="col-md-10">
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -126,23 +132,23 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
-                                <input type="submit" name="name" value="Login" />
-                                <input type="reset" name="name" value="Clear" />
+                                <input type="submit" name="name" value="Login" class="btn btn-success" />
+                                <input type="reset" name="name" value="Clear" class="btn btn-danger" />
                             </div>
                         </div>
                         @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
+                            <p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
                     }
                 </section>
             </div>
             @*
-            <div class="col-md-4">
-                <section id="socialLoginForm">
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                </section>
-            </div>
+                <div class="col-md-4">
+                    <section id="socialLoginForm">
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </section>
+                </div>
             *@
         </div>
         <script src="~/Scripts/jquery-3.3.1.min.js"></script>
