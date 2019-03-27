@@ -75,16 +75,10 @@ namespace CMS2.Controllers
             if (ModelState.IsValid)
             {
                 crisis.TimeStamp = DateTime.Now;
-
-                db.Crises.Add(crisis);
-                db.SaveChanges();
+                CrisisRepository.addCrisis(crisis);
 
                 return RedirectToAction("Index");
             }
-            //generated code
-            //ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
-            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
-            //ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
 
             //new code
             ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance", crisis.AssistanceRequiredId);
@@ -105,7 +99,6 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.getCrisisById(id);
             if (crisis == null)
             {
@@ -126,8 +119,7 @@ namespace CMS2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(crisis).State = EntityState.Modified;
-                db.SaveChanges();
+                CrisisRepository.editCrisis(crisis);
                 return RedirectToAction("Index");
             }
             ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
@@ -166,9 +158,9 @@ namespace CMS2.Controllers
                 return Redirect("/login/index");
             }
             //Crisis crisis = db.Crises.Find(id);
-            Crisis crisis = CrisisRepository.getCrisisById(id);
-            db.Crises.Remove(crisis);
-            db.SaveChanges();
+            Crisis crisis = CrisisRepository.removeCrisis(id);
+            //db.Crises.Remove(crisis);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
