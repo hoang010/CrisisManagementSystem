@@ -24,6 +24,21 @@ namespace CMS2.Data_Access_Layer
             return crisis;
         }
 
+        public List<Crisis> getCrisisByTime(DateTime time)
+        {
+            var now = DateTime.Now;
+            var all_crisis = db.Crises.ToList();
+            List<Crisis> result = new List<Crisis>();
+            foreach (var item in all_crisis)
+            {
+                if (time.Subtract(now).TotalMinutes < 30)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
         public List<AssistanceRequired> GetAssistanceRequired()
         {
             var all_assistance_required = db.AssistanceRequireds.ToList();
@@ -39,5 +54,7 @@ namespace CMS2.Data_Access_Layer
             var all_emergencies = db.Emergencies.ToList();
             return all_emergencies;
         }
+
+
     }
 }

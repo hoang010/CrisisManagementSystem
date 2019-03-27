@@ -189,8 +189,10 @@
     <Compile Include="Controllers\LoginTemplateController.cs" />
     <Compile Include="Controllers\SocialMediaTypesController.cs" />
     <Compile Include="Controllers\SocialMediaUpdatesController.cs" />
+    <Compile Include="Controllers\SummaryReportsController.cs" />
     <Compile Include="Data Access Layer\CrisisRepository.cs" />
     <Compile Include="Data Access Layer\SocialMediaUpdatesRepository.cs" />
+    <Compile Include="Data Access Layer\SummaryReportRepository.cs" />
     <Compile Include="Data Access Layer\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +208,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SocialMediaType.cs" />
     <Compile Include="Models\SocialMediaUpdates.cs" />
+    <Compile Include="Models\SummaryReport.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +323,11 @@
     <Content Include="Views\SocialMediaUpdates\Index.cshtml" />
     <Content Include="Views\Email\SendEmail.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\SummaryReports\Create.cshtml" />
+    <Content Include="Views\SummaryReports\Delete.cshtml" />
+    <Content Include="Views\SummaryReports\Details.cshtml" />
+    <Content Include="Views\SummaryReports\Edit.cshtml" />
+    <Content Include="Views\SummaryReports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
