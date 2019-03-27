@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace CMS2.Controllers
 {
@@ -17,7 +18,7 @@ namespace CMS2.Controllers
             }
 
             CrisisRepository crisisRepository = new CrisisRepository();
-            ViewBag.Crises = crisisRepository.getAllCrises();
+            ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getAllCrises());
             return View();
         }
     }
