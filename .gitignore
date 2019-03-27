@@ -11,8 +11,8 @@
 *.userprefs
 
 #Ignore App_Data
-*.mdf
-*.ldf
+#*.mdf
+#*.ldf
 
 
 # Build results
