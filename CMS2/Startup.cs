@@ -15,11 +15,11 @@ namespace CMS2
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("CMS2Context");
             app.UseHangfireDashboard();
-            //var jobId = BackgroundJob.Enqueue(() => Console.WriteLine("Fire-and-forget!"));
-            RecurringJob.AddOrUpdate(() => generateReport(), Cron.MinuteInterval(5));
+            RecurringJob.AddOrUpdate(() => generateReport(), Cron.MinuteInterval(30));
             app.UseHangfireServer();
         }
 
+        //move function to a new module later
         public void generateReport()
         {
             CrisisRepository crisisRepository = new CrisisRepository();

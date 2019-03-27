@@ -75,27 +75,32 @@ namespace CMS2.Controllers
                 db.SocialMediaUpdates.Add(socialMediaUpdates);
                 db.SaveChanges();
 
-                //api usage
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.108:5000/tweet");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                try
                 {
-                    string json = "{\"tweet\":" + "\""+ socialMediaUpdates.Description.ToString()+"\"}";
-                    System.Diagnostics.Debug.WriteLine(json);
-                    System.Diagnostics.Debug.WriteLine("===============================================================");
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-                }
+                    //api usage
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://cmsntu.herokuapp.com/tweet");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
 
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = "{\"tweet\":" + "\"" + socialMediaUpdates.Description.ToString() + "\"}";
+                        System.Diagnostics.Debug.WriteLine(json);
+                        System.Diagnostics.Debug.WriteLine("===============================================================");
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                        {
+                            var result = streamReader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (Exception ex)
                 {
-                    var result = streamReader.ReadToEnd();
+                    Console.WriteLine(ex);
                 }
-
                 return RedirectToAction("Index");
             }
 

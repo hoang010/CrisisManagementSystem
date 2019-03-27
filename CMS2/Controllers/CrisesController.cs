@@ -78,6 +78,7 @@ namespace CMS2.Controllers
 
                 db.Crises.Add(crisis);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             //generated code
