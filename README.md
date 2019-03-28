@@ -17,11 +17,7 @@ go to tools -> package manager -> restore packages
 `python plotter.py`
 
 
-![image](https://github.com/shafeeqqq/CMS2/images/load_test.png)
-
-![image](https://github.com/shafeeqqq/CMS2/images/load_test_chart.png)
-
-![image](https://github.com/shafeeqqq/CMS2/images/load_test_graph.png)
+[Link to images of load testing](https://github.com/shafeeqqq/CMS2/tree/master/images)
 
 
 
