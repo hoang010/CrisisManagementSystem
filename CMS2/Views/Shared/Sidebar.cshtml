@@ -28,7 +28,7 @@
                 <h3>Crisis Management System</h3>
             </div>
             <ul class="list-unstyled components">
-                @if (userId == 0)
+                @if (userId == 1)
     {
             <li class='@Html.IsActive("Home", "Index")'>
                 @Html.ActionLink("Dashboard", "Index", "Home")
@@ -46,7 +46,7 @@
                 @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
             </li>
 }
-                @if (userId == 1)
+                @if (userId == 3)
     {
             <li class='@Html.IsActive("Home", "Index")'>
                 @Html.ActionLink("Dashboard", "Index", "Home")
