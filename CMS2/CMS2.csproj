@@ -212,6 +212,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAndSocialMedia Module\ReportJobs.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\Class1.cs" />
   </ItemGroup>
@@ -323,7 +324,6 @@
     <Content Include="Views\SocialMediaUpdates\Index.cshtml" />
     <Content Include="Views\Email\SendEmail.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\SummaryReports\Create.cshtml" />
     <Content Include="Views\SummaryReports\Delete.cshtml" />
     <Content Include="Views\SummaryReports\Details.cshtml" />
     <Content Include="Views\SummaryReports\Edit.cshtml" />

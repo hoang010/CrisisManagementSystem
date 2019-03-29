@@ -35,28 +35,6 @@ namespace CMS2.Controllers
             return View(summaryReport);
         }
 
-        // GET: SummaryReports/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SummaryReports/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReportDetails")] SummaryReport summaryReport)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SummaryReports.Add(summaryReport);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(summaryReport);
-        }
 
         // GET: SummaryReports/Edit/5
         public ActionResult Edit(int? id)

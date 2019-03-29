@@ -11,6 +11,8 @@ namespace CMS2.Models
 
         public string ReportDetails { get; set; }
 
+        public DateTime TimeStamp { get; set; }
+
         public ICollection<Crisis> all_Crisis { get; set; }
     }
 }

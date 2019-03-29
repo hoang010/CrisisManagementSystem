@@ -1,5 +1,6 @@
 ﻿using CMS2.Data_Access_Layer;
 using CMS2.Models;
+using CMS2.ReportAndSocialMedia_Module;
 using Hangfire;
 using Microsoft.Owin;
 using Owin;
@@ -12,34 +13,12 @@ namespace CMS2
     {
         public void Configuration(IAppBuilder app)
         {
+            ReportJobs reportJobs = new ReportJobs();
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("CMS2Context");
             app.UseHangfireDashboard();
-            RecurringJob.AddOrUpdate(() => generateReport(), Cron.MinuteInterval(30));
+            RecurringJob.AddOrUpdate(() => reportJobs.generateReport(), Cron.MinuteInterval(30)); //set timer here
             app.UseHangfireServer();
-        }
-
-        //move function to a new module later
-        public void generateReport()
-        {
-            CrisisRepository crisisRepository = new CrisisRepository();
-            SummaryReportRepository summaryReportRepository = new SummaryReportRepository();
-            var all_crisis = crisisRepository.getCrisisByTime(DateTime.Now);
-            var new_report = new SummaryReport();
-            if (all_crisis == null)
-            {
-                Console.WriteLine("no report submitted during time frame");
-            }
-            else
-            {
-                string add = "";
-                foreach (var item in all_crisis)
-                {
-                    add += item.CallerName + item.Description;
-                }
-                new_report.ReportDetails = add;
-            }
-            summaryReportRepository.addNewReport(new_report);
         }
     }
 }
