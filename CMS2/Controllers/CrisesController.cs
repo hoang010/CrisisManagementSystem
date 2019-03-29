@@ -104,9 +104,9 @@ namespace CMS2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance", crisis.AssistanceRequiredId);
-            ViewBag.CategoryId = new SelectList(CrisisRepository.GetCategories(), "Id", "Description", crisis.CategoryId);
-            ViewBag.EmergencyId = new SelectList(CrisisRepository.GetEmergencies(), "Id", "Level", crisis.EmergencyId);
+            ViewBag.AssistanceRequiredId = new SelectList(db.AssistanceRequireds, "Id", "Assistance", crisis.AssistanceRequiredId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Description", crisis.CategoryId);
+            ViewBag.EmergencyId = new SelectList(db.Emergencies, "Id", "Level", crisis.EmergencyId);
             return View(crisis);
         }
 
@@ -157,7 +157,10 @@ namespace CMS2.Controllers
             {
                 return Redirect("/login/index");
             }
+            //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.removeCrisis(id);
+            //db.Crises.Remove(crisis);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
