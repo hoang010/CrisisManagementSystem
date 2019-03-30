@@ -1,7 +1,7 @@
 ﻿@model CMS2.Models.Crisis
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Sidebar.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,77 +12,85 @@
     <title>Delete</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>Crisis</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.AssistanceRequired.Assistance)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Category.Description)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Category.Description)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Emergency.Level)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Emergency.Level)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.CallerName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.CallerName)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.CallerNumber)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.CallerNumber)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Location)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Location)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-    
-        </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
-    </div>
+    @if ((int)Session["userRole"] != 2)
+    {
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Crisis</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AssistanceRequired.Assistance)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Category.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Emergency.Level)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Emergency.Level)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CallerName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CallerName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CallerNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CallerNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h3>Your account is not authorised to view this page.</h3>
+    }
 </body>
 </html>

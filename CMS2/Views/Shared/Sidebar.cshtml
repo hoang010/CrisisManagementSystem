@@ -28,82 +28,66 @@
                 <h3>Crisis Management System</h3>
             </div>
             <ul class="list-unstyled components">
-                @if (userId == 0)
-    {
-            <li class='@Html.IsActive("Home", "Index")'>
-                @Html.ActionLink("Dashboard", "Index", "Home")
-            </li>
-            <li class='@Html.IsActive("Crises", "Create")'>
-                @Html.ActionLink("Submit New Crisis", "Create", "Crises")
-            </li>
-            <li class='@Html.IsActive("Crises", "Index")'>
-                @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
-            </li>
-            <li class='@Html.IsActive("SocialMediaUpdates", "Create")'>
-                @Html.ActionLink("Social Media Update", "Create", "SocialMediaUpdates")
-            </li>
-            <li class='@Html.IsActive("SocialMediaUpdates", "Index")'>
-                @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
-            </li>
-}
                 @if (userId == 1)
-    {
-            <li class='@Html.IsActive("Home", "Index")'>
-                @Html.ActionLink("Dashboard", "Index", "Home")
-            </li>
-            <li class='@Html.IsActive("Crises", "Create")'>
-                @Html.ActionLink("Submit New Crisis", "Create", "Crises")
-            </li>
-}
+                {
+                    <li class='@Html.IsActive("Home", "Index")'>
+                        @Html.ActionLink("Dashboard", "Index", "Home")
+                    </li>
+                    <li class='@Html.IsActive("Crises", "Create")'>
+                        @Html.ActionLink("Submit New Crisis", "Create", "Crises")
+                    </li>
+                    <li class='@Html.IsActive("Crises", "Index")'>
+                        @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
+                    </li>
+                    <li class='@Html.IsActive("SocialMediaUpdates", "Create")'>
+                        @Html.ActionLink("Social Media Update", "Create", "SocialMediaUpdates")
+                    </li>
+                    <li class='@Html.IsActive("SocialMediaUpdates", "Index")'>
+                        @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
+                    </li>
+                    <li class='@Html.IsActive("SummaryReports", "Index")'>
+                        @Html.ActionLink("View Summary Reports", "Index", "SummaryReports")
+                    </li>
+                }
                 @if (userId == 2)
-    {
-            <li class='@Html.IsActive("Home", "Index")'>
-                @Html.ActionLink("Dashboard", "Index", "Home")
-            </li>
-            <li class='@Html.IsActive("Crises", "Index")'>
-                @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
-            </li>
-            <li class='@Html.IsActive("SocialMediaUpdates", "Create")'>
-                @Html.ActionLink("Social Media Update", "Create", "SocialMediaUpdates")
-            </li>
-            <li class='@Html.IsActive("SocialMediaUpdates", "Index")'>
-                @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
-            </li>
-}
+                {
+                    <li class='@Html.IsActive("Home", "Index")'>
+                        @Html.ActionLink("Dashboard", "Index", "Home")
+                    </li>
+                    <li class='@Html.IsActive("Crises", "Create")'>
+                        @Html.ActionLink("Submit New Crisis", "Create", "Crises")
+                    </li>
+                }
+                @if (userId == 3)
+                {
+                    <li class='@Html.IsActive("Home", "Index")'>
+                        @Html.ActionLink("Dashboard", "Index", "Home")
+                    </li>
+                    <li class='@Html.IsActive("Crises", "Index")'>
+                        @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
+                    </li>
+                    <li class='@Html.IsActive("SocialMediaUpdates", "Create")'>
+                        @Html.ActionLink("Social Media Update", "Create", "SocialMediaUpdates")
+                    </li>
+                    <li class='@Html.IsActive("SocialMediaUpdates", "Index")'>
+                        @Html.ActionLink("View Social Media Updates", "Index", "SocialMediaUpdates")
+                    </li>
+                    <li class='@Html.IsActive("SummaryReports", "Index")'>
+                        @Html.ActionLink("View Summary Reports", "Index", "SummaryReports")
+                    </li>
+                }
             </ul>
             <ul class="list-unstyled CTAs">
-                <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
-                <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                <li class='@Html.IsActive("Login", "Index")'>
+                    @Html.ActionLink("LogOut", "Index", "Login")
+                </li>
             </ul>
         </nav>
         <!-- Page Content Holder -->
         <div id="content">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                            <i class="glyphicon glyphicon-align-left"></i>
-                            <span>Toggle Sidebar</span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
             <div class="container body-content">
                 @RenderBody()
-                <hr />
-                <footer>
-                    @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
-                </footer>
             </div>
-
         </div>
     </div>
 

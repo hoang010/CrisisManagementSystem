@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
 using CMS2.Models;
+using CMS2.ReportAndSocialMedia_Module;
+using Hangfire;
 
 namespace CMS2.Controllers
 {
@@ -76,6 +78,12 @@ namespace CMS2.Controllers
             {
                 crisis.TimeStamp = DateTime.Now;
                 CrisisRepository.addCrisis(crisis);
+                if (crisis.EmergencyId== 3)
+                {
+                    Console.WriteLine("Level 3 Report detected!");
+                    ReportJobs reportJobs = new ReportJobs();
+                    BackgroundJob.Enqueue(() => reportJobs.sendCrisis(crisis));
+                }
 
                 return RedirectToAction("Index");
             }

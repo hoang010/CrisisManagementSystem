@@ -250,15 +250,16 @@ document.getElementById('Temperature').addEventListener('change', e => {
                     temp = myJson.items[0].readings[i].value;
                     console.log('temperature: ' + temp);
 
-                    if (Number(temp) < 20) {
+                    if (parseFloat(temp) < 25.0) {
                         tempIcon = 'lowTemp';
                     }
-                    else if (Number(temp) > 35) {
+                    else if (parseFloat(temp) > 35.0) {
                         tempIcon = 'highTemp';
                     }
                     else {
                         tempIcon = 'midTemp';
                     }
+                    console.log("temp icon: " + tempIcon);
 
                     var contentString =
                         '<h1 id="heading">' + loc + '</h1>' +

@@ -1,7 +1,7 @@
 ﻿@model CMS2.Models.SummaryReport
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Sidebar.cshtml";
 }
 
 <!DOCTYPE html>
@@ -26,9 +26,11 @@
     
         </dl>
     </div>
+    <div class="col-md-offset-1 col-md-11">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" }) 
+    </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-link" })
     </p>
 </body>
 </html>

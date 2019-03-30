@@ -17,12 +17,20 @@ namespace CMS2.Controllers
         // GET: SummaryReports
         public ActionResult Index()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             return View(db.SummaryReports.ToList());
         }
 
         // GET: SummaryReports/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -35,32 +43,14 @@ namespace CMS2.Controllers
             return View(summaryReport);
         }
 
-        // GET: SummaryReports/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SummaryReports/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReportDetails")] SummaryReport summaryReport)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SummaryReports.Add(summaryReport);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(summaryReport);
-        }
 
         // GET: SummaryReports/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +70,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ReportDetails")] SummaryReport summaryReport)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(summaryReport).State = EntityState.Modified;
@@ -92,6 +86,10 @@ namespace CMS2.Controllers
         // GET: SummaryReports/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +107,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             SummaryReport summaryReport = db.SummaryReports.Find(id);
             db.SummaryReports.Remove(summaryReport);
             db.SaveChanges();
