@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Collapsible sidebar using Bootstrap 3</title>
+    <title>CMS by Team Blue</title>
     <!-- Bootstrap CSS CDN -->
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -18,6 +18,7 @@
     @{
         var userId = (int)Session["userRole"];
     }
+
 </head>
 <body>
 
@@ -27,7 +28,7 @@
             <div class="sidebar-header">
                 <h3>Crisis Management System</h3>
             </div>
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" id="sidebarText">
                 @if (userId == 1)
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
@@ -78,31 +79,31 @@
                 }
             </ul>
             <ul class="list-unstyled CTAs">
-                <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
-                <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Logout?</a></li>
+                @*<li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>*@
             </ul>
         </nav>
         <!-- Page Content Holder -->
         <div id="content">
             @*<nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                            <i class="glyphicon glyphicon-align-left"></i>
-                            <span>Toggle Sidebar</span>
-                        </button>
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span>Toggle Sidebar</span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>*@
-            <div class="container body-content">
+                </nav>*@
+            <div class="body-content">
                 @RenderBody()
                 <hr />
                 <footer>
@@ -116,6 +117,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript">

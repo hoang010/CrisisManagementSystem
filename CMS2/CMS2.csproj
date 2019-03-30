@@ -216,6 +216,7 @@
     <Compile Include="Utilities\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />

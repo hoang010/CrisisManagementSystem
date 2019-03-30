@@ -13,7 +13,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New","Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -38,8 +38,8 @@
                 @Html.DisplayFor(modelItem => item.TimeStamp)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })
             </td>
         </tr>
     }

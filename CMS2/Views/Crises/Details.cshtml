@@ -1,7 +1,7 @@
 ﻿@model CMS2.Models.Crisis
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Sidebar.cshtml";
 }
 
 <!DOCTYPE html>
@@ -15,6 +15,7 @@
     <div>
         <h4>Crisis</h4>
         <hr />
+        <div>
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
@@ -73,10 +74,13 @@
             </dd>
     
         </dl>
+            </div>
+        <div class="col-md-offset-1 col-md-10">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-danger" })
+        </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
     </p>
 </body>
 </html>
