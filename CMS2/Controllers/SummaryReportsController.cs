@@ -17,12 +17,20 @@ namespace CMS2.Controllers
         // GET: SummaryReports
         public ActionResult Index()
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             return View(db.SummaryReports.ToList());
         }
 
         // GET: SummaryReports/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +47,10 @@ namespace CMS2.Controllers
         // GET: SummaryReports/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -58,6 +70,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ReportDetails")] SummaryReport summaryReport)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(summaryReport).State = EntityState.Modified;
@@ -70,6 +86,10 @@ namespace CMS2.Controllers
         // GET: SummaryReports/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -87,6 +107,10 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             SummaryReport summaryReport = db.SummaryReports.Find(id);
             db.SummaryReports.Remove(summaryReport);
             db.SaveChanges();

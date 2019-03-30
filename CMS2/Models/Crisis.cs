@@ -14,7 +14,6 @@ namespace CMS2.Models
         public string Location { get; set; }
         public string Description { get; set; }
         public DateTime TimeStamp { get; set; }
-        public bool Approved { get; set; } = false;
 
         public int EmergencyId { get; set; }
         public virtual Emergency Emergency { get; set; }

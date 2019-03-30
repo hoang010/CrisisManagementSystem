@@ -1,6 +1,4 @@
-﻿using CMS2.Data_Access_Layer;
-using CMS2.Models;
-using CMS2.ReportAndSocialMedia_Module;
+﻿using CMS2.ReportAndSocialMedia_Module;
 using Hangfire;
 using Microsoft.Owin;
 using Owin;
