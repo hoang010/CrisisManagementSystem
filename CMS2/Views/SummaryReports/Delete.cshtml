@@ -1,7 +1,7 @@
 ﻿@model CMS2.Models.SummaryReport
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Sidebar.cshtml";
 }
 
 <!DOCTYPE html>
@@ -14,27 +14,30 @@
 <body>
     <h3>Are you sure you want to delete this?</h3>
     <div>
-        <h4>SummaryReport</h4>
+        <h4></h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.ReportDetails)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.ReportDetails)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
-    </div>
+        <div class="col-md-offset-1 col-md-11">
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+        </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
+                </div>
+            }
+        </div>
 </body>
 </html>

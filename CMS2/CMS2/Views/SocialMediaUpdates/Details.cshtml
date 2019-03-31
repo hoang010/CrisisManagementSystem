@@ -1,0 +1,57 @@
+﻿@model CMS2.Models.SocialMediaUpdates
+
+@{
+    Layout = "~/Views/Shared/Sidebar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    @if ((int)Session["userRole"] != 2)
+    {
+        <div>
+            <h4>SocialMediaUpdates</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.SocialMediaType.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SocialMediaType.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    Time
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TimeStamp)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Delete", "Delete", new { it = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+    else
+    {
+        <h3>Your account is not authorised to view this page.</h3>
+    }
+</body>
+</html>

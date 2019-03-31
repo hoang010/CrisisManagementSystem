@@ -1,0 +1,42 @@
+﻿@model CMS2.Models.SummaryReport
+
+@{
+    Layout = "~/Views/Shared/Sidebar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    @if ((int)Session["userRole"] != 2)
+    {
+        <div>
+            <h4>SummaryReport</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ReportDetails)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ReportDetails)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+    else
+    {
+        <h3> Your account is not authorised to view this page.</h3>
+    }
+</body>
+
+</html>

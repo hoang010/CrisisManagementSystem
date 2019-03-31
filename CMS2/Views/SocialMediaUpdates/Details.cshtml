@@ -13,7 +13,7 @@
 </head>
 <body>
     <div>
-        <h4>SocialMediaUpdates</h4>
+        <h4>Social Media Updates</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -41,10 +41,12 @@
             </dd>
 
         </dl>
+        <div class="col-md-offset-1 col-md-11">
+            @Html.ActionLink("Delete", "Delete", new { it = Model.Id }, new { @class = "btn btn-danger" })
+        </div>
     </div>
     <p>
-        @Html.ActionLink("Delete", "Delete", new { it = Model.Id}) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
     </p>
 </body>
 </html>

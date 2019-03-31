@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CMS2.Models.Crisis>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+
+        html, body {
+            height: 80%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <input id="Weather" type="checkbox" value="Weather" /><label for="Weather">Weather</label>
+    <input id="Temperature" type="checkbox" value="Temperature" /><label for="Temperature">Temperature</label>
+    <input id="Haze" type="checkbox" value="Haze" /><label for="Haze">Haze</label>
+    <input id="Emergency" type="checkbox" value="Emergency" /><label for="Emergency">Emergency</label>
+    <input id="Dengue" type="checkbox" value="Dengue" /><label for="Dengue">Dengue</label>
+
+    <div id="map"></div>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/GoogleMapsAPI.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcJtcvkVHnpyfcZ-Z32rZK1RHYS5Ztuj4&callback=initMap"
+            async defer></script>
+</body>
+</html>
