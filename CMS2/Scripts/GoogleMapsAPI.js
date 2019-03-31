@@ -420,50 +420,32 @@ document.getElementById('Emergency').addEventListener('change', e => {
      * get data from database in Json form 
      */
 
-    emergencyData = {
-        "emergencies": [
-            { 
-                "callerName": "Wu Ziqing",
-                "callerNumber": "12345678",
-                "location": "Binjai Hall",
-                "description": "test1",
-                "category": "fire",
-                "level": "1",
-                "assistance": "1"
-            },
-            {
-                "callerName": "Rabbit",
-                "callerNumber": "87654321",
-                "location": "NTU Hall 6",
-                "description": "test2",
-                "category": "ambulence",
-                "level": "2",
-                "assistance": "0"
-            },
-        ]
-    }
+    var crises = $("#crises").data("crises");
 
     if (e.target.checked) {
         console.log('emergency');
         var infowindow = new google.maps.InfoWindow();                                                           
 
         async function showEmergency() {
-            for (i = 0; i < emergencyData.emergencies.length; i++) {
+            for (i = 0; i < crises.length; i++) {
 
-                location = emergencyData.emergencies[i].location;
+                location = crises[i].Location;
                 console.log("location: " + location);
-                callerName = emergencyData.emergencies[i].callerName;
+                callerName = crises[i].CallerName;
                 console.log("caller name: " + callerName);
-                callerNumber = emergencyData.emergencies[i].callerNumber;
+                callerNumber = crises[i].CallerNumber;
                 console.log("caller number: " + callerNumber);
-                description = emergencyData.emergencies[i].description;
+                description = crises[i].Description;
                 console.log("description: " + description);
-                category = emergencyData.emergencies[i].category;
+                category = crises[i].Category.Description;
                 console.log("category: " + category);
-                level = emergencyData.emergencies[i].level;
+                level = crises[i].Emergency.Level;
                 console.log("level: " + level);
-                assistance = emergencyData.emergencies[i].assistance;
+                assistance = crises[i].AssistanceRequired.Assistance;
                 console.log("assitance required: " + assistance);
+                time = crises[i].TimeStamp.split("T");
+                time = time[0] + " " + time[1].split(".")[0];
+                console.log("time: " + time[0] + " " + time[1].split(".")[0]);
 
                 await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCxhysnIE8hbwKE-v1oEG3lGjUKFngC1SE')
                     .then(function (response) {
@@ -475,20 +457,19 @@ document.getElementById('Emergency').addEventListener('change', e => {
                         lon = myJson.results[0].geometry.location.lng;
                         lat = myJson.results[0].geometry.location.lat;
 
-                        if (category == "fire") {
+                        if (category == "Fire") {
                             emerIcon = 'fire';
                         }
-                        else if (category == "ambulence") {
+                        else if (category == "Emergency Ambulance") {
                             emerIcon = 'ambulence';
                         }
-                        else if (category == "gas") {
+                        else if (category == "Gas Leak") {
                             emerIcon = 'gas';
                         }
                         else {
                             emerIcon = 'evacuation';
                         }
                         console.log("Icon: " + emerIcon);
-
 
                         var contentString =
                             '<h1 id="heading">' + "Title (ID? )" + '</h1>' +
@@ -499,8 +480,8 @@ document.getElementById('Emergency').addEventListener('change', e => {
                             '<p><b>Description: </b>' + description + '</p>' +
                             '<p><b>Category: </b>' + category + '</p>' +
                             '<p><b>Level of Emergency: </b>' + level + '</p>' +
-                            '<p><b>Assistance Required: </b>' + (assistance ? "Yes" : "No") + '</p>' +
-                            '<p><b>Report time?: </b>' + '</p>' +
+                            '<p><b>Assistance Required: </b>' + assistance + '</p>' +
+                            '<p><b>Report time: </b>' + time + '</p>' +
                             '</div>';
 
                         var marker = new google.maps.Marker({
@@ -517,6 +498,7 @@ document.getElementById('Emergency').addEventListener('change', e => {
                         }(contentString));
 
                         emergencyMarkers.push(marker);
+
                     });
                 }
             }
