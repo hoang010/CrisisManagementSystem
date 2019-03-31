@@ -74,14 +74,22 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
         {
+            if (Session["userId"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (ModelState.IsValid)
             {
                 crisis.TimeStamp = DateTime.Now;
                 CrisisRepository.addCrisis(crisis);
                 if (crisis.EmergencyId== 3)
                 {
+                    crisis.Category = db.Categories.Find(crisis.CategoryId);
+                    crisis.AssistanceRequired = db.AssistanceRequireds.Find(crisis.AssistanceRequiredId);
+                    crisis.Emergency = db.Emergencies.Find(crisis.EmergencyId);
                     Console.WriteLine("Level 3 Report detected!");
                     ReportJobs reportJobs = new ReportJobs();
+                    //add back ground job to send crisis for approval
                     BackgroundJob.Enqueue(() => reportJobs.sendCrisis(crisis));
                 }
 
@@ -161,10 +169,6 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Session["userId"] == null)
-            {
-                return Redirect("/login/index");
-            }
             //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.removeCrisis(id);
             //db.Crises.Remove(crisis);

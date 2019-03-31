@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS2.Models;
+using CMS2.ReportAndSocialMedia_Module;
+using Hangfire;
 
 namespace CMS2.Controllers
 {
@@ -68,14 +70,20 @@ namespace CMS2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ReportDetails")] SummaryReport summaryReport)
+        public ActionResult Edit([Bind(Include = "Id,ReportDetails,Approved")] SummaryReport summaryReport)
         {
             if (Session["userId"] == null)
             {
                 return Redirect("/login/index");
             }
+            summaryReport.TimeStamp = DateTime.Now;
             if (ModelState.IsValid)
             {
+                if (summaryReport.Approved == true)
+                {
+                    ReportJobs reportJobs = new ReportJobs();
+                    BackgroundJob.Enqueue(() => reportJobs.sendReport(summaryReport));
+                }
                 db.Entry(summaryReport).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

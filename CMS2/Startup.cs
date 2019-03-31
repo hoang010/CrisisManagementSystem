@@ -15,6 +15,8 @@ namespace CMS2
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("CMS2Context");
             app.UseHangfireDashboard();
+
+            //add recurring report generation every 30 minutes
             RecurringJob.AddOrUpdate(() => reportJobs.generateReport(), Cron.MinuteInterval(30)); //set timer here
             app.UseHangfireServer();
         }

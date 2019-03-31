@@ -85,8 +85,7 @@ namespace CMS2.Controllers
                     using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                     {
                         string json = "{\"tweet\":" + "\"" + socialMediaUpdates.Description.ToString() + "\"}";
-                        System.Diagnostics.Debug.WriteLine(json);
-                        System.Diagnostics.Debug.WriteLine("===============================================================");
+
                         streamWriter.Write(json);
                         streamWriter.Flush();
                         streamWriter.Close();

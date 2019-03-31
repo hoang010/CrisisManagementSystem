@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace CMS2.ReportAndSocialMedia_Module
 {
@@ -26,9 +27,9 @@ namespace CMS2.ReportAndSocialMedia_Module
                         "\nCaller Number: " + crisis.CallerNumber +
                         "\nLocation: " + crisis.Location +
                         "'nDescription: " + crisis.Description +
-                        "\nCategory: " + crisis.Category.Description +
-                        "\nAssistance Required: " + crisis.AssistanceRequired.Assistance +
-                        "\nEmergency Level: " + crisis.Emergency.Level +
+                        "\nCategory: " + /*crisis.Category.Description*/ "filler" +
+                        "\nAssistance Required: " + /*crisis.AssistanceRequired.Assistance*/ "filler" +
+                        "\nEmergency Level: " + /*crisis.Emergency.Level*/ "filler" +
                         "\nDate and Time: " + crisis.TimeStamp;
             new_report.ReportDetails = add;
             summaryReportRepository.addNewReport(new_report);
@@ -42,23 +43,28 @@ namespace CMS2.ReportAndSocialMedia_Module
             try
             {
                 //api usage
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://cmsntu.herokuapp.com/email");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.108:5000/email");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    string json = "{\"To: \":" + "\"" + report.ReportDetails + "\"}";
-                    System.Diagnostics.Debug.WriteLine(json);
-                    System.Diagnostics.Debug.WriteLine("===============================================================");
+                    string json = new JavaScriptSerializer().Serialize(new
+                    {
+                        to = "crisis.management.system.2019@gmail.com",
+                        subject = "Summary Report at" + DateTime.Now.ToString(),
+                        message = report.ReportDetails
+                    });
+                    Console.WriteLine(json);
                     streamWriter.Write(json);
                     streamWriter.Flush();
                     streamWriter.Close();
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                    }
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
                 }
             }
             catch (Exception ex)
