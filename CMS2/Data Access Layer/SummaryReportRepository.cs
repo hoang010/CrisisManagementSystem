@@ -9,6 +9,11 @@ namespace CMS2.Data_Access_Layer
     public class SummaryReportRepository
     {
         private CMS2Context db = new CMS2Context();
+
+        public List<SummaryReport> getAllReports()
+        {
+            return (db.SummaryReports.ToList());
+        }
         public void addNewReport(SummaryReport report)
         {
             try

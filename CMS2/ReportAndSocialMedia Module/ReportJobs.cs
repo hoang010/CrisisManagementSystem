@@ -21,19 +21,20 @@ namespace CMS2.ReportAndSocialMedia_Module
         {
             Console.WriteLine("Crisis Level 3");
             var new_report = new SummaryReport();
+            new_report.TimeStamp = DateTime.Now;
             string add = "";
 
-            add += "Caller Name: " + crisis.CallerName +
-                        "\nCaller Number: " + crisis.CallerNumber +
-                        "\nLocation: " + crisis.Location +
-                        "'nDescription: " + crisis.Description +
-                        "\nCategory: " + /*crisis.Category.Description*/ "filler" +
-                        "\nAssistance Required: " + /*crisis.AssistanceRequired.Assistance*/ "filler" +
-                        "\nEmergency Level: " + /*crisis.Emergency.Level*/ "filler" +
-                        "\nDate and Time: " + crisis.TimeStamp;
+            add += "Report for Crisis Id: " + crisis.Id +
+                        "_Caller Name: " + crisis.CallerName +
+                        "_Caller Number: " + crisis.CallerNumber +
+                        "_Location: " + crisis.Location +
+                        "_Description: " + crisis.Description +
+                        "_Category: " + crisis.Category.Description +
+                        "_Assistance Required: " +crisis.AssistanceRequired.Assistance+
+                        "_Emergency Level: " +crisis.Emergency.Level+
+                        "_Date and Time: " + crisis.TimeStamp;
             new_report.ReportDetails = add;
             summaryReportRepository.addNewReport(new_report);
-            new_report.TimeStamp = DateTime.Now;
 
         }
 
@@ -43,7 +44,7 @@ namespace CMS2.ReportAndSocialMedia_Module
             try
             {
                 //api usage
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.108:5000/email");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://cmsntu.herokuapp.com/email");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
@@ -52,7 +53,7 @@ namespace CMS2.ReportAndSocialMedia_Module
                     string json = new JavaScriptSerializer().Serialize(new
                     {
                         to = "crisis.management.system.2019@gmail.com",
-                        subject = "Summary Report at" + DateTime.Now.ToString(),
+                        subject = "Summary Report at: " + DateTime.Now.ToString(),
                         message = report.ReportDetails
                     });
                     Console.WriteLine(json);
@@ -87,14 +88,16 @@ namespace CMS2.ReportAndSocialMedia_Module
                 string add = "";
                 foreach (var item in all_crisis)
                 {
-                    add += "Caller Name: " + item.CallerName +
-                        "\nCaller Number: " + item.CallerNumber +
-                        "\nLocation: " + item.Location +
-                        "'nDescription: " + item.Description +
-                        "\nCategory: " + item.Category.Description +
-                        "\nAssistance Required: " + item.AssistanceRequired.Assistance +
-                        "\nEmergency Level: " + item.Emergency.Level +
-                        "\nDate and Time: " + item.TimeStamp;
+                    add += "\nReport ID: " + item.Id +
+                        "_Caller Name: " + item.CallerName +
+                        "_Caller Number: " + item.CallerNumber +
+                        "_Location: " + item.Location +
+                        "_Description: " + item.Description +
+                        "_Category: " + item.Category.Description +
+                        "_Assistance Required: " + item.AssistanceRequired.Assistance +
+                        "_Emergency Level: " + item.Emergency.Level +
+                        "_Date and Time: " + item.TimeStamp +
+                        "_=================================================================_";
                 }
                 new_report.ReportDetails = add;
                 new_report.TimeStamp = DateTime.Now;

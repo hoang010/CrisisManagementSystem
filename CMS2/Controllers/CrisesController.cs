@@ -21,14 +21,10 @@ namespace CMS2.Controllers
         // GET: Crises
         public ActionResult Index()
         {
-            //old code
-            //var crises = db.Crises.Include(c => c.AssistanceRequired).Include(c => c.Category).Include(c => c.Emergency);
-
             if (Session["userId"] == null)
             {
                 return Redirect("/login/index");
             }
-            //with data access layer
             var crisis = CrisisRepository.getAllCrises();
             return View(crisis);
         }

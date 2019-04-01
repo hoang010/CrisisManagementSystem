@@ -49,7 +49,7 @@
                         @Html.ActionLink("View Summary Reports", "Index", "SummaryReports")
                     </li>
                 }
-                @if (userId == 2)
+                @if (userId == 3)
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
                         @Html.ActionLink("Dashboard", "Index", "Home")
@@ -58,7 +58,7 @@
                         @Html.ActionLink("Submit New Crisis", "Create", "Crises")
                     </li>
                 }
-                @if (userId == 3)
+                @if (userId == 2)
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
                         @Html.ActionLink("Dashboard", "Index", "Home")

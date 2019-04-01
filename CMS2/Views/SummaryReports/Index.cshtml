@@ -15,6 +15,7 @@
     <p>
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
     </p>
+    <h2>Reports Pending Approval</h2>
     <table class="table">
         <tr>
             <th>
@@ -28,23 +29,66 @@
                 Actions
             </th>
         </tr>
-    
-    @foreach (var item in Model) {
+
+        @foreach (var item in Model)
+        {
+            if (item.Approved == false)
+            {
+                <tr>
+                    <td width="15%">
+                        @Html.DisplayFor(modelItem => item.TimeStamp)
+                    </td>
+                    <td width="60%">
+                        @Html.DisplayFor(modelItem => item.ReportDetails)
+                    </td>
+                    <td width="25%">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-link" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </table>
+
+    <h2>Approved Reports</h2>
+    <table class="table">
         <tr>
-            <td width="15%">
-                @Html.DisplayFor(modelItem => item.TimeStamp)
-            </td>
-            <td width="60%">
-                @Html.DisplayFor(modelItem => item.ReportDetails)
-            </td>
-            <td width="25%">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-link" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportDetails)
+            </th>
+
+            <th>
+                Actions
+            </th>
         </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            if (item.Approved == true)
+            {
+                <tr>
+                    <td width="15%">
+                        @Html.DisplayFor(modelItem => item.TimeStamp)
+                    </td>
+                    <td width="60%">
+                        @Html.DisplayFor(modelItem => item.ReportDetails)
+                    </td>
+                    <td width="25%">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-link" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })
+                    </td>
+                </tr>
+            }
+
+        }
+
     </table>
 </body>
 </html>

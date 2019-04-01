@@ -59,12 +59,11 @@ namespace CMS2.Data_Access_Layer
 
         public List<Crisis> getCrisisByTime(DateTime time)
         {
-            var now = DateTime.Now;
             var all_crisis = db.Crises.ToList();
             List<Crisis> result = new List<Crisis>();
             foreach (var item in all_crisis)
             {
-                if (time.Subtract(now).TotalMinutes < 30)
+                if (item.TimeStamp.Subtract(time).TotalMinutes < 30)
                 {
                     result.Add(item);
                 }

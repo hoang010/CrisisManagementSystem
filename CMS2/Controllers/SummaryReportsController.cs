@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CMS2.Data_Access_Layer;
 using CMS2.Models;
 using CMS2.ReportAndSocialMedia_Module;
 using Hangfire;
@@ -15,7 +16,7 @@ namespace CMS2.Controllers
     public class SummaryReportsController : Controller
     {
         private CMS2Context db = new CMS2Context();
-
+        private SummaryReportRepository summaryReportRepository = new SummaryReportRepository();
         // GET: SummaryReports
         public ActionResult Index()
         {
@@ -23,7 +24,7 @@ namespace CMS2.Controllers
             {
                 return Redirect("/login/index");
             }
-            return View(db.SummaryReports.ToList());
+            return View(summaryReportRepository.getAllReports());
         }
 
         // GET: SummaryReports/Details/5
