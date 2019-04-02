@@ -107,8 +107,5 @@ namespace CMS2.ReportAndSocialMedia_Module
             summaryReportRepository.addNewReport(new_report);
             return new_report;
         }
-
-        //send the tweet when requested for
-
     }
 }

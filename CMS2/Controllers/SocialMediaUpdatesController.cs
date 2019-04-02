@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
 using CMS2.Models;
+using CMS2.ReportAndSocialMedia_Module;
 using Newtonsoft.Json;
 
 namespace CMS2.Controllers
@@ -74,32 +75,8 @@ namespace CMS2.Controllers
                 socialMediaUpdates.TimeStamp = DateTime.Now;
                 db.SocialMediaUpdates.Add(socialMediaUpdates);
                 db.SaveChanges();
-
-                try
-                {
-                    //api usage
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://cmsntu.herokuapp.com/tweet");
-                    httpWebRequest.ContentType = "application/json";
-                    httpWebRequest.Method = "POST";
-
-                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                    {
-                        string json = "{\"tweet\":" + "\"" + socialMediaUpdates.Description.ToString() + "\"}";
-
-                        streamWriter.Write(json);
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                        {
-                            var result = streamReader.ReadToEnd();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
+                SocialMediaJobs socialMediaJobs = new SocialMediaJobs();
+                socialMediaJobs.tweetMessage(socialMediaUpdates);
                 return RedirectToAction("Index");
             }
 
