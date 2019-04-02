@@ -36,9 +36,9 @@ namespace CMS2.Controllers
         // GET: Crises/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notfound");
             }
             if (id == null)
             {
@@ -55,9 +55,12 @@ namespace CMS2.Controllers
         // GET: Crises/Create
         public ActionResult Create()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                //allow this action if the user is a call center operator
+                if (!(Convert.ToInt32(Session["userRole"]) == 3)) {
+                    return Redirect("/error/notfound");
+                }
             }
             //pass in data to view the assistance, categories, emergencies
             ViewBag.AssistanceRequiredId = new SelectList(CrisisRepository.GetAssistanceRequired(), "Id", "Assistance");
@@ -74,9 +77,9 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notfound");
             }
             if (ModelState.IsValid)
             {
@@ -107,9 +110,9 @@ namespace CMS2.Controllers
         // GET: Crises/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notfound");
             }
             if (id == null)
             {
@@ -147,9 +150,9 @@ namespace CMS2.Controllers
         // GET: Crises/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notfound");
             }
             if (id == null)
             {
