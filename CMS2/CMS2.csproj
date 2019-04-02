@@ -321,11 +321,6 @@
     <Content Include="Views\Crises\Details.cshtml" />
     <Content Include="Views\Crises\Edit.cshtml" />
     <Content Include="Views\Crises\Index.cshtml" />
-    <Content Include="Views\SocialMediaTypes\Create.cshtml" />
-    <Content Include="Views\SocialMediaTypes\Delete.cshtml" />
-    <Content Include="Views\SocialMediaTypes\Details.cshtml" />
-    <Content Include="Views\SocialMediaTypes\Edit.cshtml" />
-    <Content Include="Views\SocialMediaTypes\Index.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Create.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Delete.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Details.cshtml" />
