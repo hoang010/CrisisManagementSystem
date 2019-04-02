@@ -2,7 +2,57 @@
 @{
     Layout = null;
 }
-
+<style>
+    html {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    * {
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-right: 0;
+    }
+    div{
+        padding-left: 0;
+        padding-top: 0;
+    }
+    .name {
+        display: flex;
+        width: 100%;
+        height: 16.66%;
+        align-items: center;
+        justify-content: center;
+        background-color: #548b95;
+    }
+    .centered {
+        height: 83.37%;
+        padding-top: 8.33%;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        width: 50%;
+    }
+    .h1_large{
+        font-size: 140px;
+    }
+    .h3_large{
+        font-size: 48px;
+    }
+    .p{
+        font-size: 36px;
+    }
+    .button {
+        text-align: center;
+        background-color: #549b95;
+        border: none;
+        padding: 15px 20px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 2px;
+    }
+</style>
 <!DOCTYPE html>
 
 <html>
@@ -11,8 +61,18 @@
     <title>404 NotFound</title>
 </head>
 <body>
-    <div>
-    <h3>404 NotFound</h3>
+    <header class="name">
+        <h1 class="cms_title"><b>CRISIS MANAGEMENT SYSTEM (CMS)</b></h1>
+    </header>
+    <div class="centered">
+        <h1 class="h1_large">404</h1>
+        <h3 class="h3_large">PAGE NOT FOUND</h3>
+        <br />
+        <hr/>
+        <br />
+        <p>The page you have been looking for has been moved, deleted or does not exist.</p>
+        <br />
+        <input class="button" value="Return to Dashboard" onclick="location.href='@Url.Action("Index", "Home")'" />
     </div>
 </body>
 </html>

@@ -2,7 +2,68 @@
 @{
     Layout = null;
 }
+<style>
+    html {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
+    * {
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+    div {
+        padding-left: 0;
+        padding-top: 0;
+    }
+
+    .name {
+        display: flex;
+        width: 100%;
+        height: 16.66%;
+        align-items: center;
+        justify-content: center;
+        background-color: #548b95;
+    }
+
+    .centered {
+        height: 83.37%;
+        padding-top: 4.33%;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        width: 50%;
+    }
+
+    .h1_large {
+        font-size: 100px;
+    }
+
+    .h3_large {
+        font-size: 28px;
+    }
+
+    .button {
+        text-align: center;
+        background-color: #549b95;
+        border: none;
+        padding: 15px 20px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 2px;
+    }
+    .sign{
+        max-height: auto;
+        width: 30%;
+    }
+    .error_message{
+        font-size: 18px;
+    }
+</style>
 <!DOCTYPE html>
 
 <html>
@@ -11,25 +72,37 @@
     <title>NotAuthorized</title>
 </head>
 <body>
-    <div>
-        <h3> Your account is not authorised to view this page.</h3>
-        @if (Session["userRole"] == null)
-        {
-            <p>You are not singed in</p>
-            @Html.ActionLink("Sign In", "Index", "Login")
-        }
-        else
-        {
-            foreach (var item in ViewBag.Roles)
+    <header class="name">
+        <h1 class="cms_title"><b>CRISIS MANAGEMENT SYSTEM (CMS)</b></h1>
+    </header>
+    <div class="centered">
+
+        <img class="sign" src="~/Content/Images/no-sign.png" />
+        <h3 class="h3_large"><b>Your account is not authorised to view this page</b></h3>
+        <br />
+        <hr />
+        <br />
+        <div class="error_message">
+            @if (Session["userRole"] == null)
             {
-                if (item.Id == System.Convert.ToInt32(Session["userRole"].ToString()))
-                {
-                    <p>You are logged in as @item.RoleName</p>
-                    break;
-                }
+                <p>You are not singed in</p>
+                <br />
+                <input class="button" value="Sign in" onclick="location.href='@Url.Action("Index", "Login")'" />
             }
-            @Html.ActionLink("Go Back", "Index", "Home")
-        }
+            else
+            {
+                foreach (var item in ViewBag.Roles)
+                {
+                    if (item.Id == System.Convert.ToInt32(Session["userRole"].ToString()))
+                    {
+                        <p>You are logged in as @item.RoleName</p>
+                        break;
+                    }
+                }
+                <br />
+                <input class="button" value="Return to Dashboard" onclick="location.href='@Url.Action("Index", "Home")'" />
+            }
+        </div>
     </div>
 </body>
 </html>
