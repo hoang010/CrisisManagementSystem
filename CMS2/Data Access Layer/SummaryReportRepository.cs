@@ -27,5 +27,10 @@ namespace CMS2.Data_Access_Layer
             }
 
         }
+
+        public SummaryReport getReportById(int? Id)
+        {
+            return (db.SummaryReports.Find(Id));
+        }
     }
 }
