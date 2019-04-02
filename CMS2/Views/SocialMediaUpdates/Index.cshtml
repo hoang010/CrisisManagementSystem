@@ -18,7 +18,10 @@
     <table class="table">
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.SocialMediaType.Name)*@
+                @*@Html.DisplayNameFor(model => model.Id)*@
+                Tweet ID
+            </th>
+            <th>
                 Type
             </th>
             <th>
@@ -28,9 +31,11 @@
                 Actions
             </th>
         </tr>
-    @*remove edit and delete later for this page*@
     @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SocialMediaType.Name)
             </td>
@@ -38,8 +43,7 @@
                 @Html.DisplayFor(modelItem => item.TimeStamp)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link"}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link"})
             </td>
         </tr>
     }

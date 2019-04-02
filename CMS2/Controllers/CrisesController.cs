@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
 using CMS2.Helpers;
@@ -17,7 +13,6 @@ namespace CMS2.Controllers
     public class CrisesController : Controller
     {
         private LoginHelper loginHelper = new LoginHelper();
-        private CMS2Context db = new CMS2Context();
 
         //all data access elements
         private CrisisRepository CrisisRepository = new CrisisRepository();
@@ -164,7 +159,6 @@ namespace CMS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.getCrisisById(id);
             if (crisis == null)
             {
@@ -178,21 +172,9 @@ namespace CMS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Crisis crisis = db.Crises.Find(id);
             Crisis crisis = CrisisRepository.removeCrisis(id);
-            //db.Crises.Remove(crisis);
-            //db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        //to be removed after testing
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return RedirectToAction("Index");
         }
     }
 }

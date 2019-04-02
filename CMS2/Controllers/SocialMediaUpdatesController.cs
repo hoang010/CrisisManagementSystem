@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
+using CMS2.Helpers;
 using CMS2.Models;
 using CMS2.ReportAndSocialMedia_Module;
 using Newtonsoft.Json;
@@ -17,32 +18,36 @@ namespace CMS2.Controllers
     public class SocialMediaUpdatesController : Controller
     {
         private CMS2Context db = new CMS2Context();
-        private SocialMediaUpdatesRepository SocialMediaUpdatesRepository = new SocialMediaUpdatesRepository();
+        private LoginHelper loginHelper = new LoginHelper();
+        private SocialMediaUpdatesRepository socialMediaUpdatesRepository = new SocialMediaUpdatesRepository();
+        private List<int> roleRequired = new List<int>(new int[] { 1, 2 });
 
         // GET: SocialMediaUpdates
         public ActionResult Index()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
+
             //var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
-            var socialMediaUpdates = SocialMediaUpdatesRepository.getAllUpdates();
+            var socialMediaUpdates = socialMediaUpdatesRepository.getAllUpdates();
             return View(socialMediaUpdates);
         }
 
         // GET: SocialMediaUpdates/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var socialMediaUpdates = SocialMediaUpdatesRepository.getUpdateById(id);
+            var socialMediaUpdates = socialMediaUpdatesRepository.getUpdateById(id);
             //SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
             if (socialMediaUpdates == null)
             {
@@ -54,9 +59,9 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Create
         public ActionResult Create()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name");
 
@@ -83,87 +88,6 @@ namespace CMS2.Controllers
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name", socialMediaUpdates.SocialMediaTypeId);
 
             return View(socialMediaUpdates);
-        }
-
-        //should not be able to update it
-        // GET: SocialMediaUpdates/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (Session["userId"] == null)
-            {
-                return Redirect("/login/index");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
-            if (socialMediaUpdates == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name", socialMediaUpdates.SocialMediaTypeId);
-            return View(socialMediaUpdates);
-        }
-
-        // POST: SocialMediaUpdates/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Description,SocialMediaTypeId")] SocialMediaUpdates socialMediaUpdates)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(socialMediaUpdates).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name", socialMediaUpdates.SocialMediaTypeId);
-            return View(socialMediaUpdates);
-        }
-        //should not be able to delete also
-        // GET: SocialMediaUpdates/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (Session["userId"] == null)
-            {
-                return Redirect("/login/index");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
-            if (socialMediaUpdates == null)
-            {
-                return HttpNotFound();
-            }
-            return View(socialMediaUpdates);
-        }
-
-        // POST: SocialMediaUpdates/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            if (Session["userId"] == null)
-            {
-                return Redirect("/login/index");
-            }
-            SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
-            db.SocialMediaUpdates.Remove(socialMediaUpdates);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -17,12 +17,14 @@ namespace CMS2.Controllers
             return View();
         }
 
+        //Entered a random string after domains
         public ActionResult NotFound()
         {
             Response.StatusCode = 404;
             return View();
         }
 
+        //Not allowed to view the page
         public ActionResult NotAuthorized()
         {
             ViewBag.Roles = userRoleRepository.getAllRoles();
