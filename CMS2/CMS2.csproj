@@ -236,6 +236,7 @@
     <Content Include="Content\Images\lowTemp.png" />
     <Content Include="Content\Images\midQual.png" />
     <Content Include="Content\Images\midTemp.png" />
+    <Content Include="Content\Images\no-sign.png" />
     <Content Include="Content\Images\rain.png" />
     <Content Include="Content\Images\sunny.png" />
     <Content Include="Content\Style2.css" />
