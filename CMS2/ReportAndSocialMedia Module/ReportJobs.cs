@@ -74,7 +74,7 @@ namespace CMS2.ReportAndSocialMedia_Module
             }
         }
 
-        //generate the report when requested (30 minutes)
+        //generate the report when requested (timing identified in startup.cs)
         public SummaryReport generateReport()
         {
             var all_crisis = crisisRepository.getCrisisByTime(DateTime.Now);
