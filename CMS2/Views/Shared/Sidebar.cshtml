@@ -28,7 +28,7 @@
                 <h3>Crisis Management System</h3>
             </div>
             <ul class="list-unstyled components">
-                @if (userId == 1)
+                @if (userId == 1) //admin
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
                         @Html.ActionLink("Dashboard", "Index", "Home")
@@ -49,7 +49,7 @@
                         @Html.ActionLink("View Summary Reports", "Index", "SummaryReports")
                     </li>
                 }
-                @if (userId == 3)
+                @if (userId == 3) //call center operator
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
                         @Html.ActionLink("Dashboard", "Index", "Home")
@@ -58,7 +58,7 @@
                         @Html.ActionLink("Submit New Crisis", "Create", "Crises")
                     </li>
                 }
-                @if (userId == 2)
+                @if (userId == 2) //crisis manager
                 {
                     <li class='@Html.IsActive("Home", "Index")'>
                         @Html.ActionLink("Dashboard", "Index", "Home")
@@ -79,7 +79,7 @@
             </ul>
             <ul class="list-unstyled CTAs">
                 <li class='@Html.IsActive("Login", "Index")'>
-                    @Html.ActionLink("LogOut", "Index", "Login")
+                    @Html.ActionLink("LogOut", "LogOut", "Login")
                 </li>
             </ul>
         </nav>

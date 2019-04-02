@@ -35,5 +35,12 @@ namespace CMS2.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult LogOut()
+        {
+            Session["userId"] = null;
+            Session["userRole"] = null;
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

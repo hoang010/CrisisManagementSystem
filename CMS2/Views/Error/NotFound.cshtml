@@ -1,0 +1,36 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>404 NotFound</title>
+</head>
+<body>
+    <div class="center-block">
+        <h3> Your account is not authorised to view this page.</h3>
+        @if (Session["userRole"] == null)
+        {
+            <p>You are not singed in</p>
+            @Html.ActionLink("Sign In", "Index", "Login")
+        }
+        else
+        {
+            foreach (var item in ViewBag.Roles)
+            {
+                if (item.Id == System.Convert.ToInt32(Session["userRole"].ToString()))
+                {
+                    <p>You are logged in as @item.RoleName</p>
+                    break;
+                }
+            }
+            @Html.ActionLink("Go Back", "Index", "Home")
+        }
+    </div>
+</body>
+</html>

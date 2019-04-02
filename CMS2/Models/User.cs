@@ -13,11 +13,14 @@ namespace CMS2.Models
 
         [DisplayName("User Name")]
         [Required(ErrorMessage ="This field is required")]
-
         public string UserName { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "This field is required")]
         public string Email { get; set; }
+
         public string Contact { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = "on";
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "This field is required")]

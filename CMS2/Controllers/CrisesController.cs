@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
+using CMS2.Helpers;
 using CMS2.Models;
 using CMS2.ReportAndSocialMedia_Module;
 using Hangfire;
@@ -15,16 +16,19 @@ namespace CMS2.Controllers
 {
     public class CrisesController : Controller
     {
+        private LoginHelper loginHelper = new LoginHelper();
         private CMS2Context db = new CMS2Context();
         private CrisisRepository CrisisRepository = new CrisisRepository();
+        private List<int> roleRequired = new List<int>(new int[] {1, 2});
 
         // GET: Crises
         public ActionResult Index()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notfound");
             }
+
             var crisis = CrisisRepository.getAllCrises();
             return View(crisis);
         }
