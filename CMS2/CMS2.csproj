@@ -184,7 +184,10 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SocialMediaUpdatesController.cs" />
     <Compile Include="Controllers\SummaryReportsController.cs" />
+    <Compile Include="Data Access Layer\AssistanceRequiredRepository.cs" />
+    <Compile Include="Data Access Layer\CategoriesRepository.cs" />
     <Compile Include="Data Access Layer\CrisisRepository.cs" />
+    <Compile Include="Data Access Layer\EmergencyRepository.cs" />
     <Compile Include="Data Access Layer\SocialMediaUpdatesRepository.cs" />
     <Compile Include="Data Access Layer\SummaryReportRepository.cs" />
     <Compile Include="Data Access Layer\UserRepository.cs" />

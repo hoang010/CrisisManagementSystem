@@ -71,24 +71,6 @@ namespace CMS2.Data_Access_Layer
             return result;
         }
 
-        public List<AssistanceRequired> GetAssistanceRequired()
-        {
-            var all_assistance_required = db.AssistanceRequireds.ToList();
-            return all_assistance_required;
-        }
-
-        public List<Category> GetCategories()
-        {
-            var all_categories = db.Categories.ToList();
-            return all_categories;
-        }
-
-        public List<Emergency> GetEmergencies()
-        {
-            var all_emergencies = db.Emergencies.ToList();
-            return all_emergencies;
-        }
-
         public bool addCrisis(Crisis crisis)
         {
             try
