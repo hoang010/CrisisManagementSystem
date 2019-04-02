@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS2.Data_Access_Layer;
+using CMS2.Helpers;
 using CMS2.Models;
 using CMS2.ReportAndSocialMedia_Module;
 using Newtonsoft.Json;
@@ -17,32 +18,36 @@ namespace CMS2.Controllers
     public class SocialMediaUpdatesController : Controller
     {
         private CMS2Context db = new CMS2Context();
-        private SocialMediaUpdatesRepository SocialMediaUpdatesRepository = new SocialMediaUpdatesRepository();
+        private LoginHelper loginHelper = new LoginHelper();
+        private SocialMediaUpdatesRepository socialMediaUpdatesRepository = new SocialMediaUpdatesRepository();
+        private List<int> roleRequired = new List<int>(new int[] { 1, 2 });
 
         // GET: SocialMediaUpdates
         public ActionResult Index()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
+
             //var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
-            var socialMediaUpdates = SocialMediaUpdatesRepository.getAllUpdates();
+            var socialMediaUpdates = socialMediaUpdatesRepository.getAllUpdates();
             return View(socialMediaUpdates);
         }
 
         // GET: SocialMediaUpdates/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var socialMediaUpdates = SocialMediaUpdatesRepository.getUpdateById(id);
+            var socialMediaUpdates = socialMediaUpdatesRepository.getUpdateById(id);
             //SocialMediaUpdates socialMediaUpdates = db.SocialMediaUpdates.Find(id);
             if (socialMediaUpdates == null)
             {
@@ -54,9 +59,9 @@ namespace CMS2.Controllers
         // GET: SocialMediaUpdates/Create
         public ActionResult Create()
         {
-            if (Session["userId"] == null)
+            if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/login/index");
+                return Redirect("/error/notauthorized");
             }
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name");
 
