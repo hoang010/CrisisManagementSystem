@@ -14,8 +14,7 @@ namespace CMS2.ReportAndSocialMedia_Module
     {
         private SummaryReportRepository summaryReportRepository = new SummaryReportRepository();
         private CrisisRepository crisisRepository = new CrisisRepository();
-
-        
+  
         //sendcrisis for approval when a level 3 crisis is made
         public void sendCrisis(Crisis crisis)
         {

@@ -178,8 +178,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AssistanceRequiredsController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CrisesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -316,18 +314,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\AssistanceRequireds\Create.cshtml" />
-    <Content Include="Views\AssistanceRequireds\Delete.cshtml" />
-    <Content Include="Views\AssistanceRequireds\Details.cshtml" />
-    <Content Include="Views\AssistanceRequireds\Edit.cshtml" />
-    <Content Include="Views\AssistanceRequireds\Index.cshtml" />
     <Content Include="Views\Account\LoginTemplate.cshtml" />
     <Content Include="Views\Shared\Sidebar.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Crises\Create.cshtml" />
     <Content Include="Views\Crises\Delete.cshtml" />
     <Content Include="Views\Crises\Details.cshtml" />
