@@ -19,8 +19,13 @@ namespace CMS2.Controllers
 
         public ActionResult NotFound()
         {
-            ViewBag.Roles = userRoleRepository.getAllRoles();
+            Response.StatusCode = 404;
+            return View();
+        }
 
+        public ActionResult NotAuthorized()
+        {
+            ViewBag.Roles = userRoleRepository.getAllRoles();
             return View();
         }
     }

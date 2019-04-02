@@ -26,7 +26,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notfound");
+                return Redirect("/error/notauthorized");
             }
 
             var crisis = CrisisRepository.getAllCrises();
@@ -38,7 +38,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notfound");
+                return Redirect("/error/notauthorized");
             }
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace CMS2.Controllers
             {
                 //allow this action if the user is a call center operator
                 if (!(Convert.ToInt32(Session["userRole"]) == 3)) {
-                    return Redirect("/error/notfound");
+                    return Redirect("/error/notauthorized");
                 }
             }
             //pass in data to view the assistance, categories, emergencies
@@ -79,7 +79,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notfound");
+                return Redirect("/error/notauthorized");
             }
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notfound");
+                return Redirect("/error/notauthorized");
             }
             if (id == null)
             {
@@ -152,7 +152,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notfound");
+                return Redirect("/error/notauthorized");
             }
             if (id == null)
             {

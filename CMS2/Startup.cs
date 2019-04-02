@@ -14,10 +14,12 @@ namespace CMS2
             ReportJobs reportJobs = new ReportJobs();
             ConfigureAuth(app);
             GlobalConfiguration.Configuration.UseSqlServerStorage("CMS2Context");
-            app.UseHangfireDashboard();
+
+            //for debugging with a UI on jobs
+            //app.UseHangfireDashboard();
 
             //add recurring report generation every 30 minutes
-            RecurringJob.AddOrUpdate(() => reportJobs.sendReport(reportJobs.generateReport()), Cron.MinuteInterval(5)); //set timer here
+            RecurringJob.AddOrUpdate(() => reportJobs.sendReport(reportJobs.generateReport()), Cron.MinuteInterval(30)); //set timer here
             app.UseHangfireServer();
         }
     }
