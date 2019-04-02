@@ -79,16 +79,18 @@ namespace CMS2.ReportAndSocialMedia_Module
         {
             var all_crisis = crisisRepository.getCrisisByTime(DateTime.Now);
             var new_report = new SummaryReport();
-            if (all_crisis == null)
+            if (all_crisis.Count() == 0)
             {
-                Console.WriteLine("no report submitted during time frame");
+                new_report.ReportDetails = "No new report submitted during time frame";
+                new_report.TimeStamp = DateTime.Now;
+                new_report.Approved = true;
             }
             else
             {
                 string add = "";
                 foreach (var item in all_crisis)
                 {
-                    add += "\nReport ID: " + item.Id +
+                    add += "Crisis ID: " + item.Id +
                         "_Caller Name: " + item.CallerName +
                         "_Caller Number: " + item.CallerNumber +
                         "_Location: " + item.Location +
@@ -96,8 +98,7 @@ namespace CMS2.ReportAndSocialMedia_Module
                         "_Category: " + item.Category.Description +
                         "_Assistance Required: " + item.AssistanceRequired.Assistance +
                         "_Emergency Level: " + item.Emergency.Level +
-                        "_Date and Time: " + item.TimeStamp +
-                        "_=================================================================_";
+                        "_Date and Time: " + item.TimeStamp;
                 }
                 new_report.ReportDetails = add;
                 new_report.TimeStamp = DateTime.Now;
@@ -106,5 +107,8 @@ namespace CMS2.ReportAndSocialMedia_Module
             summaryReportRepository.addNewReport(new_report);
             return new_report;
         }
+
+        //send the tweet when requested for
+
     }
 }

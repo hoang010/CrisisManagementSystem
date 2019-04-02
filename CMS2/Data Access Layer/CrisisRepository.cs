@@ -63,7 +63,7 @@ namespace CMS2.Data_Access_Layer
             List<Crisis> result = new List<Crisis>();
             foreach (var item in all_crisis)
             {
-                if (item.TimeStamp.Subtract(time).TotalMinutes < 30)
+                if (time.Subtract(item.TimeStamp).TotalMinutes < 30)
                 {
                     result.Add(item);
                 }
