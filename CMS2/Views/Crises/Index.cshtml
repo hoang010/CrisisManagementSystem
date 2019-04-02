@@ -12,82 +12,75 @@
     <title>Index</title>
 </head>
 <body>
-    @if ((int)Session["userRole"] != 2)
-    {
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallerNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emergency.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallerNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssistanceRequired.Assistance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emergency.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
                 <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayFor(modelItem => item.TimeStamp)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CallerName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CallerNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AssistanceRequired.Assistance)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Emergency.Level)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Location)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TimeStamp)
-                </th>
-                <th>
-                    Actions
-                </th>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
             </tr>
+        }
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CallerName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CallerNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AssistanceRequired.Assistance)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Emergency.Level)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location)
-                    </td>
-                    <th>
-                        @Html.DisplayFor(modelItem => item.TimeStamp)
-                    </th>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-            }
-
-        </table>
-    }
-    else
-    {
-        <h3>Your account is not authorised to view this page.</h3>
-    }
+    </table>
 </body>
 </html>

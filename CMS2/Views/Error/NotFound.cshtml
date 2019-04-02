@@ -72,7 +72,8 @@
         <br />
         <p>The page you have been looking for has been moved, deleted or does not exist.</p>
         <br />
-        <input class="button" value="Return to Dashboard" onclick="location.href='@Url.Action("Index", "Home")'" />
+        @*<input class="button" value="Return to Home" onclick="location.href='@Url.Action("Index", "Home")'" />*@
+        @Html.ActionLink("Return to Home", "Index", "Home")
     </div>
 </body>
 </html>

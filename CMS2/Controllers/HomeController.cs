@@ -16,6 +16,10 @@ namespace CMS2.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userRole"] == null)
+            {
+                return Redirect("/login/index");
+            }
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
                 return Redirect("/error/notauthorized");
