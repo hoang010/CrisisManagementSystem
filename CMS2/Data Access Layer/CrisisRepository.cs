@@ -13,7 +13,7 @@ namespace CMS2.Data_Access_Layer
 
         public List<Crisis> getAllCrises()
         {
-            var all_crises = db.Crises.ToList();
+            var all_crises = db.Crises.OrderByDescending(x => x.TimeStamp).ToList();
 
             return all_crises;
         }

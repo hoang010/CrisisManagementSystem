@@ -12,7 +12,7 @@ namespace CMS2.Data_Access_Layer
 
         public List<SummaryReport> getAllReports()
         {
-            return (db.SummaryReports.ToList());
+            return (db.SummaryReports.OrderByDescending(x => x.TimeStamp).ToList());
         }
         public void addNewReport(SummaryReport report)
         {
