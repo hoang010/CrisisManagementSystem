@@ -328,9 +328,7 @@
     <Content Include="Views\Crises\Edit.cshtml" />
     <Content Include="Views\Crises\Index.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Create.cshtml" />
-    <Content Include="Views\SocialMediaUpdates\Delete.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Details.cshtml" />
-    <Content Include="Views\SocialMediaUpdates\Edit.cshtml" />
     <Content Include="Views\SocialMediaUpdates\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\SummaryReports\Delete.cshtml" />
