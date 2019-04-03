@@ -13,8 +13,8 @@ namespace CMS2.Models
         [Required(ErrorMessage ="This field is required")]
         public string CallerName { get; set; }
 
-        [Required]
-        [StringLength(8)]
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("^[0-9]{8,8}$", ErrorMessage = "The phone number must be 8 digits")]
         [DisplayName("Caller Number")]
         public string CallerNumber { get; set; }
 
