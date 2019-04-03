@@ -429,6 +429,8 @@ document.getElementById('Emergency').addEventListener('change', e => {
         async function showEmergency() {
             for (i = 0; i < crises.length; i++) {
 
+                id = crises[i].Id;
+                console.log("location: " + id);
                 location = crises[i].Location;
                 console.log("location: " + location);
                 callerName = crises[i].CallerName;
@@ -472,7 +474,7 @@ document.getElementById('Emergency').addEventListener('change', e => {
                         console.log("Icon: " + emerIcon);
 
                         var contentString =
-                            '<h1 id="heading">' + "Title (ID? )" + '</h1>' +
+                            '<h1 id="heading">' + id + '</h1>' +
                             '<div id="body">' +
                             '<p><b>Caller Name: </b>' + callerName + '</p>' +
                             '<p><b>Caller Number: </b>' + callerNumber + '</p>' +
