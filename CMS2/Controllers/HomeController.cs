@@ -25,7 +25,7 @@ namespace CMS2.Controllers
                 return Redirect("/error/notauthorized");
             }
             CrisisRepository crisisRepository = new CrisisRepository();
-            ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getAllCrises());
+            ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getLastestCrisis());
             return View();
         }
     }

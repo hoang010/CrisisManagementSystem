@@ -18,6 +18,20 @@ namespace CMS2.Data_Access_Layer
             return all_crises;
         }
 
+        public List<Crisis> getLastestCrisis()
+        {
+            var all_crisis = db.Crises.OrderByDescending(x => x.TimeStamp).ToList();
+            List<Crisis> result = new List<Crisis>();
+            foreach (var item in all_crisis)
+            {
+                if (DateTime.Now.Subtract(item.TimeStamp).TotalDays < 7)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
         public Crisis getCrisisById(int? id)
         {
             var crisis = db.Crises.Find(id);
