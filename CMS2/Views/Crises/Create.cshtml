@@ -90,7 +90,7 @@
      }
     <script>
         $(document).ready(function () {
-            $("#test").click(async function () {
+            $("#Location").on('keyup',async function () {
                 var location = $("#Location").val().toString();
                 await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=AIzaSyCxhysnIE8hbwKE-v1oEG3lGjUKFngC1SE'+'&components = country:SG')
                     .then(function (response) {
@@ -107,9 +107,9 @@
 
                     })
             });
-            $("#Location").on('keydown', function () {
-                document.getElementById("custom-message").style.display = 'none';
-            });
+            //$("#Location").on('keydown', function () {
+            //    document.getElementById("custom-message").style.display = 'none';
+            //});
 
         });
     </script>
