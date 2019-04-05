@@ -12,7 +12,7 @@ namespace CMS2.Controllers
     public class HomeController : Controller
     {
         private LoginHelper loginHelper = new LoginHelper();
-        private List<int> roleRequired = new List<int>(new int[] { 1, 2, 3});
+        private List<int> roleRequired = new List<int>(new int[] { 1, 2, 3, 4, 5});
 
         public ActionResult Index()
         {
@@ -25,7 +25,19 @@ namespace CMS2.Controllers
                 return Redirect("/error/notauthorized");
             }
             CrisisRepository crisisRepository = new CrisisRepository();
-            ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getLastestCrisis());
+            if (Convert.ToInt32(Session["userRole"]) == 4)
+            {
+                ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getCrisesByRoles(4));
+            }
+            else if (Convert.ToInt32(Session["userRole"]) == 5)
+            {
+                ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getCrisesByRoles(5));
+            }
+            else
+            {
+                ViewBag.Crises = JsonConvert.SerializeObject(crisisRepository.getLastestCrisis());
+            }
+ 
             return View();
         }
     }

@@ -99,5 +99,36 @@ namespace CMS2.Data_Access_Layer
                 return false;
             }
         }
+
+        public List<Crisis> getCrisesByRoles(int role)
+        {
+            var all_crises = db.Crises.OrderBy(x => x.TimeStamp).ToList();
+            List<Crisis> result = new List<Crisis>();
+            if (role == 4) //scdf
+            {
+                foreach (var item in all_crises)
+                {
+                    if (item.AssistanceRequiredId == 2 || item.AssistanceRequiredId == 3|| item.AssistanceRequiredId == 5)
+                    {
+                        result.Add(item);
+                    }
+                }
+            }
+            else if (role == 5) //sg power
+            {
+                foreach (var item in all_crises)
+                {
+                    if (item.CategoryId == 6)
+                    {
+                        result.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No roles found");
+            }
+            return result;
+        }
     }
 }

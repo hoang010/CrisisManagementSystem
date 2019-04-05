@@ -24,14 +24,14 @@ namespace CMS2.ReportAndSocialMedia_Module
             string add = "";
 
             add += "Report for Crisis Id: " + crisis.Id +
-                        "_Caller Name: " + crisis.CallerName +
-                        "_Caller Number: " + crisis.CallerNumber +
-                        "_Location: " + crisis.Location +
-                        "_Description: " + crisis.Description +
-                        "_Category: " + crisis.Category.Description +
-                        "_Assistance Required: " +crisis.AssistanceRequired.Assistance+
-                        "_Emergency Level: " +crisis.Emergency.Level+
-                        "_Date and Time: " + crisis.TimeStamp;
+                        "\nCaller Name: " + crisis.CallerName +
+                        "\nCaller Number: " + crisis.CallerNumber +
+                        "\nLocation: " + crisis.Location +
+                        "\nDescription: " + crisis.Description +
+                        "\nCategory: " + crisis.Category.Description +
+                        "\nAssistance Required: " + crisis.AssistanceRequired.Assistance+
+                        "\nEmergency Level: " + crisis.Emergency.Level+
+                        "\nDate and Time: " + crisis.TimeStamp;
             new_report.ReportDetails = add;
             summaryReportRepository.addNewReport(new_report);
 
@@ -90,14 +90,14 @@ namespace CMS2.ReportAndSocialMedia_Module
                 foreach (var item in all_crisis)
                 {
                     add += "Crisis ID: " + item.Id +
-                        "_Caller Name: " + item.CallerName +
-                        "_Caller Number: " + item.CallerNumber +
-                        "_Location: " + item.Location +
-                        "_Description: " + item.Description +
-                        "_Category: " + item.Category.Description +
-                        "_Assistance Required: " + item.AssistanceRequired.Assistance +
-                        "_Emergency Level: " + item.Emergency.Level +
-                        "_Date and Time: " + item.TimeStamp;
+                        "\nCaller Name: " + item.CallerName +
+                        "\nCaller Number: " + item.CallerNumber +
+                        "\nLocation: " + item.Location +
+                        "\nDescription: " + item.Description +
+                        "\nCategory: " + item.Category.Description +
+                        "\nAssistance Required: " + item.AssistanceRequired.Assistance +
+                        "\nEmergency Level: " + item.Emergency.Level +
+                        "\nDate and Time: " + item.TimeStamp;
                 }
                 new_report.ReportDetails = add;
                 new_report.TimeStamp = DateTime.Now;

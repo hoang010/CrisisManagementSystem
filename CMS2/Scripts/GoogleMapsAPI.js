@@ -414,7 +414,7 @@ document.getElementById('Haze').addEventListener('change', e => {
 // Turn on/off Traffic
 document.getElementById('Emergency').addEventListener('change', e => {
 
-    var callerName, callerNumber, location, description, category, level, assistance, lon, lat, emerIcon;
+    var callerName, callerNumber, location, description, category, level, assistance, response, lon, lat, emerIcon;
 
     /*
      * get data from database in Json form 
@@ -445,6 +445,9 @@ document.getElementById('Emergency').addEventListener('change', e => {
                 console.log("level: " + level);
                 assistance = crises[i].AssistanceRequired.Assistance;
                 console.log("assitance required: " + assistance);
+                response = crises[i].Response;
+                console.log("response: " + response);
+
                 time = crises[i].TimeStamp.split("T");
                 time = time[0] + " " + time[1].split(".")[0];
                 console.log("time: " + time[0] + " " + time[1].split(".")[0]);
@@ -476,6 +479,7 @@ document.getElementById('Emergency').addEventListener('change', e => {
                         var contentString =
                             '<h1 id="heading">' + id + '</h1>' +
                             '<div id="body">' +
+                            '<p><b>Response : </b>' + response + '</p>' +
                             '<p><b>Caller Name: </b>' + callerName + '</p>' +
                             '<p><b>Caller Number: </b>' + callerNumber + '</p>' +
                             '<p><b>Location: </b>' + location + '</p>' +

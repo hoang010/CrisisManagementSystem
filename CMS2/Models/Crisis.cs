@@ -25,6 +25,9 @@ namespace CMS2.Models
         [DisplayName("Description")]
         public string Description { get; set; } = "-";
 
+        [DataType(DataType.MultilineText)]
+        public string Response { get; set; } = "PENDING";
+
         public DateTime TimeStamp { get; set; }
 
         public int EmergencyId { get; set; }

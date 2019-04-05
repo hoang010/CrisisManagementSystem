@@ -3,6 +3,28 @@
 @{
     Layout = "~/Views/Shared/Sidebar.cshtml";
 }
+<style>
+    .checkbox-inline{
+        height: 35px;
+    }
+    .form-group{
+        width: 75%;
+        height: 50%;
+    }
+    .col-md-10 {
+        width: 66.67%;
+        height: 50%;
+    }
+    .form-control{
+        max-width: 100%;
+    }
+    #text{
+        max-height: 100px;
+    }
+    #approved{
+        padding-top: 25px;
+    }
+</style>
 
 <!DOCTYPE html>
 
@@ -26,18 +48,19 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
+        <div class="form-group" id="text">
             @Html.LabelFor(model => model.ReportDetails, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReportDetails, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10 text" id="text">
+                @Html.TextAreaFor(model => model.ReportDetails, 5, 50, new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.ReportDetails, new { htmlAttributes = new { @class = "form-control", @style = "width: 100%" } })*@
                 @Html.ValidationMessageFor(model => model.ReportDetails, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="approved">
             @Html.LabelFor(model => model.Approved, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Approved, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Approved, new { htmlAttributes = new { @class = "checkbox-inline" } })
                 @Html.ValidationMessageFor(model => model.Approved, "", new { @class = "text-danger" })
             </div>
         </div>

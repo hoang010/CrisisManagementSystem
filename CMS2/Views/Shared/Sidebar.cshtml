@@ -76,6 +76,15 @@
                         @Html.ActionLink("View Summary Reports", "Index", "SummaryReports")
                     </li>
                 }
+                @if (userId == 4 || userId == 5) //responder
+                {
+                    <li class='@Html.IsActive("Home", "Index")'>
+                        @Html.ActionLink("Dashboard", "Index", "Home")
+                    </li>
+                    <li class='@Html.IsActive("Crises", "Index")'>
+                        @Html.ActionLink("Manage Existing Crisis", "Index", "Crises")
+                    </li>
+                }
             </ul>
             <ul class="list-unstyled CTAs">
                 <li class='@Html.IsActive("Login", "Index")'>

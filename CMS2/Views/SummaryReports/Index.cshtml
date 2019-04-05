@@ -3,7 +3,11 @@
 @{
     Layout = "~/Views/Shared/Sidebar.cshtml";
 }
-
+<style>
+    .multiline {
+        white-space: pre-wrap;
+    }
+</style>
 <!DOCTYPE html>
 
 <html>
@@ -94,7 +98,7 @@
             <td width="50%">
                 @Html.DisplayFor(modelItem => item.ReportDetails)
             </td>
-            <td width="25%">
+            <td width="25%" class="multiline">
                 @Html.ActionLink("Manage", "Edit", new { id = item.Id }, new { @class = "btn btn-link" }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-link" })
             </td>

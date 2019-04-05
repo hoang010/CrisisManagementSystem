@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace CMS2.Models
     {
         public int Id { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string ReportDetails { get; set; }
 
         public DateTime TimeStamp { get; set; }

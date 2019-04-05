@@ -20,7 +20,7 @@ namespace CMS2.Controllers
         private CategoriesRepository categoriesRepository = new CategoriesRepository();
         private EmergencyRepository emergencyRepository = new EmergencyRepository();
 
-        private List<int> roleRequired = new List<int>(new int[] {1, 2});
+        private List<int> roleRequired = new List<int>(new int[] {1, 2, 4, 5});
 
         // GET: Crises
         public ActionResult Index()
@@ -29,8 +29,17 @@ namespace CMS2.Controllers
             {
                 return Redirect("/error/notauthorized");
             }
+            var crisis = new List<Crisis>();
+            //if the user is not a responder then just get all crises
+            if (Convert.ToInt32(Session["userRole"]) != 4  && Convert.ToInt32(Session["userRole"]) != 5)
+            {
+                crisis = CrisisRepository.getAllCrises();
+            }
+            else
+            {
+                crisis = CrisisRepository.getCrisesByRoles(Convert.ToInt32(Session["userRole"]));
+            }
 
-            var crisis = CrisisRepository.getAllCrises();
             return View(crisis);
         }
 
@@ -62,6 +71,11 @@ namespace CMS2.Controllers
                 if (!(Convert.ToInt32(Session["userRole"]) == 3)) {
                     return Redirect("/error/notauthorized");
                 }
+            }
+            //move the responder back to the unauthorized page
+            if (Convert.ToInt32(Session["userRole"]) == 4 || Convert.ToInt32(Session["userRole"]) == 5)
+            {
+                return Redirect("/error/notauthorized");
             }
             //pass in data to view the assistance, categories, emergencies
             ViewBag.AssistanceRequiredId = new SelectList(assistanceRequiredRepository.getAssistanceRequired(), "Id", "Assistance");
@@ -135,7 +149,7 @@ namespace CMS2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId")] Crisis crisis)
+        public ActionResult Edit([Bind(Include = "Id,CallerName,CallerNumber,Location,Description,EmergencyId,AssistanceRequiredId,CategoryId,Response")] Crisis crisis)
         {
             if (ModelState.IsValid)
             {
