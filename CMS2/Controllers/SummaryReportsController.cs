@@ -26,7 +26,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
 
             return View(summaryReportRepository.getAllReports());
@@ -37,7 +37,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (id == null)
             {
@@ -57,7 +57,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (id == null)
             {
@@ -80,7 +80,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             summaryReport.TimeStamp = DateTime.Now;
             if (ModelState.IsValid)

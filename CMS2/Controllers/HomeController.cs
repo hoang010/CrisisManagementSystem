@@ -18,11 +18,11 @@ namespace CMS2.Controllers
         {
             if (Session["userRole"] == null)
             {
-                return Redirect("/login/index");
+                return RedirectToAction("Index", "Login");
             }
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             CrisisRepository crisisRepository = new CrisisRepository();
             if (Convert.ToInt32(Session["userRole"]) == 4)

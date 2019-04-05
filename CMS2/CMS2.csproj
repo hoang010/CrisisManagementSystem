@@ -197,14 +197,11 @@
     </Compile>
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssistanceRequired.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CMS2Context.cs" />
     <Compile Include="Models\Crisis.cs" />
     <Compile Include="Models\Emergency.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SocialMediaType.cs" />
     <Compile Include="Models\SocialMediaUpdates.cs" />
     <Compile Include="Models\SummaryReport.cs" />

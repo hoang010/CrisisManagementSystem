@@ -27,7 +27,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
 
             //var socialMediaUpdates = db.SocialMediaUpdates.Include(s => s.SocialMediaType);
@@ -40,7 +40,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
 
             if (id == null)
@@ -61,7 +61,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             ViewBag.SocialMediaTypeId = new SelectList(db.SocialMediaTypes, "Id", "Name");
 

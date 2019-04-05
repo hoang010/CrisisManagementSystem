@@ -27,7 +27,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             var crisis = new List<Crisis>();
             //if the user is not a responder then just get all crises
@@ -48,7 +48,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (id == null)
             {
@@ -69,13 +69,13 @@ namespace CMS2.Controllers
             {
                 //allow this action if the user is a call center operator
                 if (!(Convert.ToInt32(Session["userRole"]) == 3)) {
-                    return Redirect("/error/notauthorized");
+                    return RedirectToAction("NotAuthorized", "Error");
                 }
             }
             //move the responder back to the unauthorized page
             if (Convert.ToInt32(Session["userRole"]) == 4 || Convert.ToInt32(Session["userRole"]) == 5)
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             //pass in data to view the assistance, categories, emergencies
             ViewBag.AssistanceRequiredId = new SelectList(assistanceRequiredRepository.getAssistanceRequired(), "Id", "Assistance");
@@ -94,7 +94,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (id == null)
             {
@@ -167,7 +167,7 @@ namespace CMS2.Controllers
         {
             if (!loginHelper.isAuthorized(Convert.ToInt32(Session["userRole"]), roleRequired))
             {
-                return Redirect("/error/notauthorized");
+                return RedirectToAction("NotAuthorized", "Error");
             }
             if (id == null)
             {
